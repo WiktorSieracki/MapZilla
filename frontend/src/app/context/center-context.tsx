@@ -8,9 +8,10 @@ export const CenterContextProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [center, setCenter] = useState<[number, number]>([
-    54.39482637467512, 18.574318885803226,
-  ]);
+  const [center, setCenter] = useState<{ x: number; y: number }>({
+    x: 54.39482637467512,
+    y: 18.574318885803226,
+  });
   const [data, setData] = useState(null);
 
   return (

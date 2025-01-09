@@ -4,6 +4,7 @@ import {
   Marker,
   Popup,
   useMapEvents,
+  Polygon,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -11,7 +12,12 @@ import { useCenterContext } from "../context/center-context";
 import { CenterContextProps } from "../interface/centerInterface";
 
 // Fix for default marker icon issue
-delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.prototype.options.iconUrl =
+  "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png";
+L.Icon.Default.prototype.options.iconRetinaUrl =
+  "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png";
+L.Icon.Default.prototype.options.shadowUrl =
+  "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png";
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
     "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
@@ -23,7 +29,7 @@ function LocationMarker({ setCenter: setCenter }: CenterContextProps) {
   useMapEvents({
     moveend(e) {
       const map = e.target;
-      setCenter([map.getCenter().lat, map.getCenter().lng]);
+      setCenter({ x: map.getCenter().lat, y: map.getCenter().lng });
     },
   });
   return null;
@@ -32,11 +38,15 @@ function LocationMarker({ setCenter: setCenter }: CenterContextProps) {
 export const MapBox = () => {
   const { center, setCenter, data, setData } = useCenterContext();
 
+  const polygonData = data?.eleme nts
+    ?.find((element) => element.type === "way")
+    ?.geometry.map((point) => [point.lat, point.lon]);
+
   return (
     <div>
       <div className="w-[600px] h-[600px]">
         <MapContainer
-          center={center}
+          center={[center.x, center.y]}
           zoom={13}
           scrollWheelZoom={true}
           style={{ height: "100%", width: "100%" }}
@@ -45,12 +55,16 @@ export const MapBox = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {data && console.log(data)}
-          <Marker position={center}>
+          <Marker position={[center.x, center.y]}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
           </Marker>
+          {polygonData && (
+            <Polygon positions={polygonData} pathOptions={{ color: "blue" }}>
+              <Popup>EkoPark UG</Popup>
+            </Polygon>
+          )}
           <LocationMarker
             center={center}
             setCenter={setCenter}
@@ -60,12 +74,14 @@ export const MapBox = () => {
         </MapContainer>
       </div>
       <div>
-        Current center coordinates: {center[0]}, {center[1]}
+        Current center coordinates: {center.x}, {center.y}
       </div>
       <button
-        onClick={() => setCenter([54.39482637467512, 18.574318885803226])}
+        onClick={() =>
+          setCenter({ x: 54.39482637467512, y: 18.574318885803226 })
+        }
       >
-        Put possition on UG
+        Put peossition on UG
       </button>
     </div>
   );

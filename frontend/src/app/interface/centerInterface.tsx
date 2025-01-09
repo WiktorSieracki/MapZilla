@@ -1,6 +1,6 @@
 export interface CenterContextProps {
-  center: [number, number];
-  setCenter: (center: [number, number]) => void;
+  center: { x: number; y: number };
+  setCenter: (center: { x: number; y: number }) => void;
   data: any;
   setData: (data: any) => void;
 }

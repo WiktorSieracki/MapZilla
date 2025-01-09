@@ -5,6 +5,10 @@ export const MapPoints = () => {
   const { center, setData } = useCenterContext();
 
   const fetchData = async () => {
+    const radius = 0.01;
+    const square = `[bbox:${center.x - radius},${center.y - radius},${
+      center.x + radius
+    },${center.y + radius}]`;
     try {
       const response = await fetch("https://overpass-api.de/api/interpreter", {
         method: "POST",
@@ -15,7 +19,7 @@ export const MapPoints = () => {
                           [out:json]
                           [timeout:90]
                           ;
-                          node(around:1200, ${center[0]}, ${center[1]})->.center;
+                          node(around:1200, ${center.x}, ${center.y})->.center;
                           (
                             node(around.center:1200)["amenity"="place_of_worship"];
                             way(around.center:1200)["amenity"="place_of_worship"];
