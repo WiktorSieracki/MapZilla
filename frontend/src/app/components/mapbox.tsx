@@ -38,7 +38,7 @@ function LocationMarker({ setCenter: setCenter }: CenterContextProps) {
 export const MapBox = () => {
   const { center, setCenter, data, setData } = useCenterContext();
 
-  const polygonData = data?.eleme nts
+  const polygonData = data?.elements
     ?.find((element) => element.type === "way")
     ?.geometry.map((point) => [point.lat, point.lon]);
 
