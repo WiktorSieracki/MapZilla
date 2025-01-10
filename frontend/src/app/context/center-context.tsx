@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
-import { CenterContextProps } from "../interface/centerInterface";
+import { CenterContextProps } from "../interface/center-interface";
 
 const CenterContext = createContext<CenterContextProps | undefined>(undefined);
 

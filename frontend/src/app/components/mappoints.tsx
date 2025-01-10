@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { useCenterContext } from "../context/center-context";
+import { Place } from "../interface/places";
 
-export const MapPoints = () => {
+export const MapPoints = ({ places }: { places: Place[] }) => {
   const { center, setData } = useCenterContext();
 
   const fetchData = async () => {
@@ -15,21 +15,18 @@ export const MapPoints = () => {
         body:
           "data=" +
           encodeURIComponent(`
-                          [bbox:54.394,18.574,54.396,18.576]
+                          ${square}
                           [out:json]
                           [timeout:90]
                           ;
                           node(around:1200, ${center.x}, ${center.y})->.center;
                           (
-                            node(around.center:1200)["amenity"="place_of_worship"];
-                            way(around.center:1200)["amenity"="place_of_worship"];
-                            relation(around.center:1200)["amenity"="place_of_worship"];
-                            node(around.center:1200)["leisure"="park"];
-                            way(around.center:1200)["leisure"="park"];
-                            relation(around.center:1200)["leisure"="park"];
-                            node(around.center:1200)["amenity"="pharmacy"];
-                            way(around.center:1200)["amenity"="pharmacy"];
-                            relation(around.center:1200)["amenity"="pharmacy"];
+                            ${places
+                              .map(
+                                (place) =>
+                                  `node(around.center:1200)[${place}];way(around.center:1200)[${place}];relation(around.center:1200)[${place}];`
+                              )
+                              .join("")}
                             );
                             out geom;
                             `),
