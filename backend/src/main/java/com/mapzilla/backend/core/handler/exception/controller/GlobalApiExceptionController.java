@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/exception/")
 public class GlobalApiExceptionController {
-    @GetMapping("http-message-not-readable")
-    ResponseEntity<FieldValidationErrorsDto> handleHttpMessageNotReadableException(
-            @RequestBody FieldValidationErrorsDto fieldValidationErrorsDto) {
-        return ResponseEntity.ok(fieldValidationErrorsDto);
-    }
+//    @GetMapping("http-message-not-readable")
+//    ResponseEntity<FieldValidationErrorsDto> handleHttpMessageNotReadableException(
+//            @RequestBody FieldValidationErrorsDto fieldValidationErrorsDto) {
+//        return ResponseEntity.ok(fieldValidationErrorsDto);
+//    }
 }
