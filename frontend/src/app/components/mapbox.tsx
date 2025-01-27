@@ -9,7 +9,9 @@ import {
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useCenterContext } from "../context/center-context";
-import { CenterContextProps } from "../interface/centerInterface";
+import { CenterContextProps } from "../interface/center-interface";
+import { MakePolygons } from "./make-polygons";
+import { MakeNodes } from "./make-nodes";
 
 // Fix for default marker icon issue
 L.Icon.Default.prototype.options.iconUrl =
@@ -25,7 +27,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
-function LocationMarker({ setCenter: setCenter }: CenterContextProps) {
+function LocationMarker({ setCenter }: CenterContextProps) {
   useMapEvents({
     moveend(e) {
       const map = e.target;
@@ -37,10 +39,6 @@ function LocationMarker({ setCenter: setCenter }: CenterContextProps) {
 
 export const MapBox = () => {
   const { center, setCenter, data, setData } = useCenterContext();
-
-  const polygonData = data?.elements
-    ?.find((element) => element.type === "way")
-    ?.geometry.map((point) => [point.lat, point.lon]);
 
   return (
     <div>
@@ -60,11 +58,8 @@ export const MapBox = () => {
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
           </Marker>
-          {polygonData && (
-            <Polygon positions={polygonData} pathOptions={{ color: "blue" }}>
-              <Popup>EkoPark UG</Popup>
-            </Polygon>
-          )}
+          {data && <MakePolygons elements={data.elements} />}
+          {data && <MakeNodes elements={data.elements} />}
           <LocationMarker
             center={center}
             setCenter={setCenter}
