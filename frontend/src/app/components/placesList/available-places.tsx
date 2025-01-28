@@ -24,7 +24,7 @@ export const AvaiablePlaces = ({ selectedPlaces }: AvaiablePlacesProps) => {
         {availablePlaces.map((place) => (
           <li
             key={place.id}
-            className="flex items-center bg-green-400 p-2 m-2 rounded-lg"
+            className="flex items-center p-2 m-2 rounded-lg border-2  border-green-600"
           >
             <span
               className="inline-block w-4 h-4 mr-2 rounded-full"

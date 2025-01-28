@@ -68,9 +68,9 @@ export const MapBox = () => {
           />
         </MapContainer>
       </div>
-      <div>
+      {/* <div>
         Current center coordinates: {center.x}, {center.y}
-      </div>
+      </div> */}
       <Button
         className="m-1"
         onClick={() =>

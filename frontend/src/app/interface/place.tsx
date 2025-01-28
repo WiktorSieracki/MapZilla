@@ -55,4 +55,18 @@ export const places: Place[] = [
     readableName: "Bank",
     color: "yellow",
   },
+  {
+    id: 7,
+    prefix: "amenity",
+    queryName: "hospital",
+    readableName: "Hospital",
+    color: "orange",
+  },
+  {
+    id: 8,
+    prefix: "amenity",
+    queryName: "cinema",
+    readableName: "Cinema",
+    color: "brown",
+  },
 ];
