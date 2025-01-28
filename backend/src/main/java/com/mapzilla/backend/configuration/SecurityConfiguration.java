@@ -1,18 +1,20 @@
 package com.mapzilla.backend.configuration;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -23,7 +25,11 @@ import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfiguration {
+
+    private final JwtAuthConverter jwtAuthConverter;
 
 //    @Bean
 //    @Profile("dev")
@@ -55,23 +61,22 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated()
 //                                .anyRequest().permitAll() // so far we let that say
                 )
-//                .formLogin(form -> form.disable()) // Turn off login for today
-//                .httpBasic(httpBasic -> httpBasic.disable()); // Basic Auth Off - oauth2 to be added soon
-                // Konfiguracja Resource Server z JWT
-//                .oauth2ResourceServer(oauth2 -> oauth2.jwt())
-                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
-
-                // Polityka sesji
+//                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())
+//                        .jwtAuthenticationConverter(jwtAuthConverter))
+//                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())
+//                        .jwtAuthenticationConverter(jwtAuthConverter))
+//                .oauth2ResourceServer(oauth2 -> oauth2
+//                        .jwt()
+//                        .jwtAuthenticationConverter(new JwtAuthConverter())  // Użycie niestandardowego konwertera
+//                )
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwt -> jwt
+                                .jwtAuthenticationConverter(new JwtAuthConverter())  // Użycie niestandardowego konwertera
+                        )
+                )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
-
-
-//        http.oauth2ResourceServer().jwt();
-//
-//        http.sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
 
         return http.build();
     }
