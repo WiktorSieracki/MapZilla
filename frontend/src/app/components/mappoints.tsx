@@ -1,5 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { useCenterContext } from "../context/center-context";
-import { Place } from "../interface/places";
+import { Place } from "../interface/place";
 
 export const MapPoints = ({ places }: { places: Place[] }) => {
   const { center, setData } = useCenterContext();
@@ -24,7 +25,7 @@ export const MapPoints = ({ places }: { places: Place[] }) => {
                             ${places
                               .map(
                                 (place) =>
-                                  `node(around.center:1200)[${place}];way(around.center:1200)[${place}];relation(around.center:1200)[${place}];`
+                                  `node(around.center:1200)["${place.prefix}" = "${place.queryName}"];way(around.center:1200)["${place.prefix}" = "${place.queryName}"];relation(around.center:1200)["${place.prefix}" = "${place.queryName}"];`
                               )
                               .join("")}
                             );
@@ -48,7 +49,7 @@ export const MapPoints = ({ places }: { places: Place[] }) => {
 
   return (
     <div>
-      <button onClick={fetchData}>Fetch Data</button>
+      <Button onClick={fetchData}>Fetch Data</Button>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import { useCenterContext } from "../context/center-context";
 import { CenterContextProps } from "../interface/center-interface";
 import { MakePolygons } from "./make-polygons";
 import { MakeNodes } from "./make-nodes";
+import { Button } from "@/components/ui/button";
 
 // Fix for default marker icon issue
 L.Icon.Default.prototype.options.iconUrl =
@@ -71,13 +72,13 @@ export const MapBox = () => {
       <div>
         Current center coordinates: {center.x}, {center.y}
       </div>
-      <button
+      <Button
         onClick={() =>
           setCenter({ x: 54.39482637467512, y: 18.574318885803226 })
         }
       >
-        Put peossition on UG
-      </button>
+        Put possition on UG
+      </Button>
     </div>
   );
 };
