@@ -6,33 +6,11 @@ import { MapPoints } from "./components/mappoints";
 import { MultiSelect } from "./components/multi-select";
 import { CenterContextProvider } from "./context/center-context";
 import { Place } from "./interface/place";
-import { PlacesList } from "./components/placesLIst/places-list";
+import { PlacesList } from "./components/placesList/places-list";
+import { Score } from "./components/placesList/score";
+import { places } from "@/app/interface/place";
 
 export default function Home() {
-  const places: Place[] = [
-    {
-      id: 1,
-      prefix: "amenity",
-      queryName: "place_of_worship",
-      readableName: "Place of Worship",
-      color: "red",
-    },
-    {
-      id: 2,
-      prefix: "leisure",
-      queryName: "park",
-      readableName: "Park",
-      color: "green",
-    },
-    {
-      id: 3,
-      prefix: "amenity",
-      queryName: "pharmacy",
-      readableName: "Pharmacy",
-      color: "blue",
-    },
-  ];
-
   const [selectedPlaces, setSelectedPlaces] = useState<Place[]>([]);
 
   const handleValueChange = (selectedValues: string[]) => {
@@ -62,6 +40,7 @@ export default function Home() {
               options={options}
               onValueChange={handleValueChange}
             />
+            <Score selectedPlaces={selectedPlaces} />
             <PlacesList selectedPlaces={selectedPlaces} />
           </div>
         </div>

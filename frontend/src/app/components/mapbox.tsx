@@ -4,7 +4,6 @@ import {
   Marker,
   Popup,
   useMapEvents,
-  Polygon,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -56,7 +55,7 @@ export const MapBox = () => {
           />
           <Marker position={[center.x, center.y]}>
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              You are here. <br />
             </Popup>
           </Marker>
           {data && <MakePolygons elements={data.elements} />}
@@ -73,6 +72,7 @@ export const MapBox = () => {
         Current center coordinates: {center.x}, {center.y}
       </div>
       <Button
+        className="m-1"
         onClick={() =>
           setCenter({ x: 54.39482637467512, y: 18.574318885803226 })
         }

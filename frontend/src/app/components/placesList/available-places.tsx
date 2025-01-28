@@ -19,10 +19,17 @@ export const AvaiablePlaces = ({ selectedPlaces }: AvaiablePlacesProps) => {
 
   return (
     <div>
-      <h2>Available Places</h2>
+      <h2 className="text-xl font-semibold">Available Places</h2>
       <ul>
         {availablePlaces.map((place) => (
-          <li key={place.id} className="bg-green-400 p-2 m-2 rounded-lg">
+          <li
+            key={place.id}
+            className="flex items-center bg-green-400 p-2 m-2 rounded-lg"
+          >
+            <span
+              className="inline-block w-4 h-4 mr-2 rounded-full"
+              style={{ backgroundColor: place.color }}
+            ></span>
             {place.readableName}
           </li>
         ))}

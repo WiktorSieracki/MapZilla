@@ -25,10 +25,13 @@ export const NotAvailablePlaces = ({
 
   return (
     <div>
-      <h2>Not Available Places</h2>
+      <h2 className="text-xl font-semibold">Not Available Places</h2>
       <ul>
         {notAvailablePlaces.map((place) => (
-          <li key={place.id} className="bg-red-500 p-2 m-2 rounded-lg">
+          <li
+            key={place.id}
+            className="bg-red-500 p-2 m-2 rounded-lg text-gray-100"
+          >
             {place.readableName}
           </li>
         ))}

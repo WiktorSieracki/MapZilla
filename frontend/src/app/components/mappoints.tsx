@@ -49,7 +49,9 @@ export const MapPoints = ({ places }: { places: Place[] }) => {
 
   return (
     <div>
-      <Button onClick={fetchData}>Fetch Data</Button>
+      <Button className="m-1" onClick={fetchData}>
+        Find Locations
+      </Button>
     </div>
   );
 };
