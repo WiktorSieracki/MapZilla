@@ -1,13 +1,11 @@
 package com.mapzilla.backend.request;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
 @Data
-public class FavouriteLocationRequest {
+public class AddFavouriteLocationRequest {
     @NotBlank(message = "User ID is required and cannot be empty")
     private String userId;
 
@@ -16,11 +14,16 @@ public class FavouriteLocationRequest {
     private BigDecimal score;
 
     @NotNull(message = "Latitude is required")
+    @Min(value = 0, message = "Lat must be greater than 0")
     private BigDecimal lat;
 
     @NotNull(message = "Longitude is required")
+    @Min(value = 0, message = "Lon must be greater than 0")
     private BigDecimal lon;
 
+    @NotNull(message = "List of availablePlaces is required!")
     private List<String> availablePlaces;
+
+    @NotNull(message = "List of notAvailablePlaces is required!")
     private List<String> notAvailablePlaces;
 }

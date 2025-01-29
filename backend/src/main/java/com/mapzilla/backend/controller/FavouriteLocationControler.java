@@ -1,14 +1,14 @@
 package com.mapzilla.backend.controller;
 import com.mapzilla.backend.exceptions.ResourceNotFoundException;
 import com.mapzilla.backend.model.FavouriteLocation;
-import com.mapzilla.backend.request.FavouriteLocationRequest;
+import com.mapzilla.backend.request.AddFavouriteLocationRequest;
+import com.mapzilla.backend.request.UpdateFavouriteLocationRequest;
 import com.mapzilla.backend.response.ApiResponse;
 import com.mapzilla.backend.service.IFavouriteLocationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,11 +18,10 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/favourite-location")
 @RequiredArgsConstructor
-@Validated
 public class FavouriteLocationControler {
     private final IFavouriteLocationService favouriteLocationService;
     @PostMapping
-    public ResponseEntity<ApiResponse> addFavouriteLocation(@Valid @RequestBody FavouriteLocationRequest request){
+    public ResponseEntity<ApiResponse> addFavouriteLocation(@RequestBody @Valid AddFavouriteLocationRequest request){
         try {
             FavouriteLocation favouriteLocation = favouriteLocationService.addFavouriteLocation(request);
             return ResponseEntity.status(HttpStatus.CREATED)
@@ -60,7 +59,7 @@ public class FavouriteLocationControler {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> updateFavouriteLocationById(@Valid @RequestBody FavouriteLocationRequest request, @PathVariable Long id) {
+    public ResponseEntity<ApiResponse> updateFavouriteLocationById(@RequestBody @Valid UpdateFavouriteLocationRequest request, @PathVariable Long id) {
         try {
             FavouriteLocation updatedLocation = favouriteLocationService.updateFavouriteLocationById(id, request);
             return ResponseEntity.ok(new ApiResponse("Success!", updatedLocation));

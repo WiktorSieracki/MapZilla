@@ -3,7 +3,8 @@ package com.mapzilla.backend.service;
 import com.mapzilla.backend.exceptions.ResourceNotFoundException;
 import com.mapzilla.backend.model.FavouriteLocation;
 import com.mapzilla.backend.repository.FavouriteLocationRepository;
-import com.mapzilla.backend.request.FavouriteLocationRequest;
+import com.mapzilla.backend.request.AddFavouriteLocationRequest;
+import com.mapzilla.backend.request.UpdateFavouriteLocationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class FavouriteLocationService implements IFavouriteLocationService{
 
     private final FavouriteLocationRepository favouriteLocationRepository;
     @Override
-    public FavouriteLocation addFavouriteLocation(FavouriteLocationRequest request) {
+    public FavouriteLocation addFavouriteLocation(AddFavouriteLocationRequest request) {
         FavouriteLocation location = new FavouriteLocation();
         location.setUserId(request.getUserId());
         location.setScore(request.getScore());
@@ -46,7 +47,7 @@ public class FavouriteLocationService implements IFavouriteLocationService{
         favouriteLocationRepository.delete(location);
     }
     @Override
-    public FavouriteLocation updateFavouriteLocationById(Long id, FavouriteLocationRequest request) {
+    public FavouriteLocation updateFavouriteLocationById(Long id, UpdateFavouriteLocationRequest request) {
         FavouriteLocation location = favouriteLocationRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Favourite location not found with id: " + id));
 
