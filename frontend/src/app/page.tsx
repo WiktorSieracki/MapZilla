@@ -9,6 +9,7 @@ import { PlacesList } from "./components/placesList/places-list";
 import { Score } from "./components/placesList/score";
 import { places } from "@/app/interface/place";
 import dynamic from "next/dynamic";
+import { Favourite } from "./components/favourite";
 const MapBox = dynamic(
   () => import("./components/mapbox").then((mod: any) => mod.default),
   { ssr: false }
@@ -36,7 +37,8 @@ export default function Home() {
         <div className="flex gap-4">
           <div>
             <MapBox />
-            <MapPoints places={selectedPlaces} />
+            <MapPoints selectedPlaces={selectedPlaces} />
+            <Favourite selectedPlaces={selectedPlaces} />
           </div>
           <div>
             <MultiSelect
