@@ -4,7 +4,6 @@ import {
   Marker,
   Popup,
   useMapEvents,
-  Polygon,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -12,6 +11,7 @@ import { useCenterContext } from "../context/center-context";
 import { CenterContextProps } from "../interface/center-interface";
 import { MakePolygons } from "./make-polygons";
 import { MakeNodes } from "./make-nodes";
+import { Button } from "@/components/ui/button";
 
 // Fix for default marker icon issue
 L.Icon.Default.prototype.options.iconUrl =
@@ -37,7 +37,7 @@ function LocationMarker({ setCenter }: CenterContextProps) {
   return null;
 }
 
-export const MapBox = () => {
+const MapBox = () => {
   const { center, setCenter, data, setData } = useCenterContext();
 
   return (
@@ -55,7 +55,7 @@ export const MapBox = () => {
           />
           <Marker position={[center.x, center.y]}>
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              You are here. <br />
             </Popup>
           </Marker>
           {data && <MakePolygons elements={data.elements} />}
@@ -68,16 +68,16 @@ export const MapBox = () => {
           />
         </MapContainer>
       </div>
-      <div>
-        Current center coordinates: {center.x}, {center.y}
-      </div>
-      <button
+      <Button
+        className="m-1"
         onClick={() =>
           setCenter({ x: 54.39482637467512, y: 18.574318885803226 })
         }
       >
-        Put peossition on UG
-      </button>
+        Put possition on UG
+      </Button>
     </div>
   );
 };
+
+export default MapBox;
