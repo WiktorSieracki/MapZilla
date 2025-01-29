@@ -15,9 +15,19 @@ export const CenterContextProvider = ({
     y: 18.574318885803226,
   });
   const [data, setData] = useState(null);
+  const [locationCenter, setLocationCenter] = useState({ x: 0, y: 0 });
 
   return (
-    <CenterContext.Provider value={{ center, setCenter, data, setData }}>
+    <CenterContext.Provider
+      value={{
+        center,
+        setCenter,
+        data,
+        setData,
+        locationCenter,
+        setLocationCenter,
+      }}
+    >
       {children}
     </CenterContext.Provider>
   );

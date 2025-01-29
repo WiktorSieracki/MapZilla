@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { useCenterContext } from "../context/center-context";
 import { Place } from "../interface/place";
+import { useState } from "react";
 
-export const MapPoints = ({ places }: { places: Place[] }) => {
-  const { center, setData } = useCenterContext();
+export const MapPoints = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
+  const { center, setData, setLocationCenter } = useCenterContext();
 
   const fetchData = async () => {
     const radius = 0.01;
+    setLocationCenter?.({ x: center.x, y: center.y });
     const square = `[bbox:${center.x - radius},${center.y - radius},${
       center.x + radius
     },${center.y + radius}]`;
@@ -22,7 +24,7 @@ export const MapPoints = ({ places }: { places: Place[] }) => {
                           ;
                           node(around:1200, ${center.x}, ${center.y})->.center;
                           (
-                            ${places
+                            ${selectedPlaces
                               .map(
                                 (place) =>
                                   `node(around.center:1200)["${place.prefix}" = "${place.queryName}"];way(around.center:1200)["${place.prefix}" = "${place.queryName}"];relation(around.center:1200)["${place.prefix}" = "${place.queryName}"];`

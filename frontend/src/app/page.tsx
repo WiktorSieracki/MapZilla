@@ -9,6 +9,7 @@ import { PlacesList } from "./components/placesList/places-list";
 import { Score } from "./components/placesList/score";
 import { places } from "@/app/interface/place";
 import dynamic from "next/dynamic";
+<<<<<<< HEAD
 import { useContext } from "react";
 import { getServerSession, Session } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
@@ -19,6 +20,9 @@ import { GetServerSideProps } from "next";
 import { useSession } from "next-auth/react";
 // import { AuthContext } from "./context/AuthProvider";
 
+=======
+import { Favourite } from "./components/favourite";
+>>>>>>> basic-view
 const MapBox = dynamic(
   () => import("./components/mapbox").then((mod: any) => mod.default),
   { ssr: false }
@@ -101,7 +105,8 @@ export default function Home() {
         <div className="flex gap-4">
           <div>
             <MapBox />
-            <MapPoints places={selectedPlaces} />
+            <MapPoints selectedPlaces={selectedPlaces} />
+            <Favourite selectedPlaces={selectedPlaces} />
           </div>
           <div>
             <MultiSelect
