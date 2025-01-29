@@ -1,5 +1,6 @@
 import { CircleMarker, Popup } from "react-leaflet";
 import { Node, Way } from "../interface/map-objects";
+import { places } from "../interface/place";
 
 interface ElementProps {
   elements: (Node | Way)[];
@@ -8,20 +9,28 @@ interface ElementProps {
 export const MakeNodes = ({ elements }: ElementProps) => {
   const nodes = elements.filter((element) => element.type === "node");
 
+  const matchNodes = nodes.map((node) => {
+    return {
+      ...node,
+      color: places.find(
+        (place) => place.queryName === node.tags?.[place.prefix]
+      )?.color,
+    };
+  });
+
   return (
     <>
-      {nodes.map((node: Node) => (
+      {matchNodes.map((node) => (
         <CircleMarker
           key={node.id}
           center={[node.lat, node.lon]}
           radius={5}
-          color="red"
+          color={node.color}
         >
           <Popup>
-            {node.tags?.name ||
-              node.tags?.amenity ||
-              node.tags?.leisure ||
-              "No name"}
+            {node.tags?.amenity || node.tags?.leisure}
+            <br />
+            {node.tags?.name}
           </Popup>
         </CircleMarker>
       ))}

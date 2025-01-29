@@ -1,0 +1,14 @@
+{
+    "lat": 51.5074,
+    "lon": 0.1278,
+    "score": 0.8,
+    "availablePlaces": [
+        "place_of_worship",
+        "park",
+        "hospital"
+    ],
+    "notAvailablePlaces": [
+        "restaurant",
+        "bar"
+    ]
+}
