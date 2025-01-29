@@ -1,0 +1,93 @@
+#services:
+#  database:
+#    image: postgres:16-alpine
+#    restart: always
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_PASSWORD: admin
+#      POSTGRES_USER: admin
+#      POSTGRES_DB: mapzilla
+#    networks:
+#      - mapzilla-network
+#    volumes:
+#      - mapzilla-volume:/var/lib/postgresql/data
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.dev
+#    restart: always
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - database
+#    networks:
+#      - mapzilla-network
+#    develop:
+#      watch:
+#        - action: sync+restart
+#          path: .
+#          target: /opt/
+#
+#networks:
+#  mapzilla-network:
+#    name: mapzilla-network
+#volumes:
+#  mapzilla-volume:
+
+services:
+  database:
+    image: postgres:16-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: mapzilla
+    networks:
+      - mapzilla-network
+    volumes:
+      - mapzilla-volume:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - database
+      - keycloak
+    networks:
+      - mapzilla-network
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=dev
+#      - KEYCLOAK_JWK_URI=http://keycloak:8080/realms/Mapzilla/protocol/openid-connect/certs
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.1.0
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME=localhost
+    command: start-dev
+    networks:
+      - mapzilla-network
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+      - keycloak-logs:/opt/keycloak/logs
+
+networks:
+  mapzilla-network:
+    name: mapzilla-network
+
+volumes:
+  mapzilla-volume:
+  keycloak-data:
+  keycloak-logs:
+
