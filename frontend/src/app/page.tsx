@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { MapBox } from "./components/mapbox";
 import { MapPoints } from "./components/mappoints";
 import { MultiSelect } from "./components/multi-select";
 import { CenterContextProvider } from "./context/center-context";
@@ -9,6 +8,11 @@ import { Place } from "./interface/place";
 import { PlacesList } from "./components/placesList/places-list";
 import { Score } from "./components/placesList/score";
 import { places } from "@/app/interface/place";
+import dynamic from "next/dynamic";
+const MapBox = dynamic(
+  () => import("./components/mapbox").then((mod: any) => mod.default),
+  { ssr: false }
+);
 
 export default function Home() {
   const [selectedPlaces, setSelectedPlaces] = useState<Place[]>([]);

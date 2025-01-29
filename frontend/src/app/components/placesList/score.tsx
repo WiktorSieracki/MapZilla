@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Place } from "@/app/interface/place";
 import { useCenterContext } from "@/app/context/center-context";

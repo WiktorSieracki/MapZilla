@@ -37,7 +37,7 @@ function LocationMarker({ setCenter }: CenterContextProps) {
   return null;
 }
 
-export const MapBox = () => {
+const MapBox = () => {
   const { center, setCenter, data, setData } = useCenterContext();
 
   return (
@@ -68,9 +68,6 @@ export const MapBox = () => {
           />
         </MapContainer>
       </div>
-      {/* <div>
-        Current center coordinates: {center.x}, {center.y}
-      </div> */}
       <Button
         className="m-1"
         onClick={() =>
@@ -82,3 +79,5 @@ export const MapBox = () => {
     </div>
   );
 };
+
+export default MapBox;
