@@ -1,4 +1,4 @@
-package com.mapzilla.backend.favourite.controller;
+package com.mapzilla.backend.feature.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
