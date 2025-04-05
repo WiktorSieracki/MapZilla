@@ -34,15 +34,9 @@ export const MapPoints = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
                             `),
       });
 
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.indexOf('application/json') !== -1) {
-        const result = await response.json();
-        console.log(result);
-        setData(result);
-      } else {
-        const text = await response.text();
-        console.error('Unexpected response format:', text);
-      }
+      const result = await response.json();
+      console.log(result);
+      setData(result);
     } catch (error) {
       console.error('Error fetching data: ', error);
     }
