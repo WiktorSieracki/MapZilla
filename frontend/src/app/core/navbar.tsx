@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useSession } from "next-auth/react";
-import Login from "@/app/homepage/components/Login";
-import Logout from "@/app/homepage/components/Logout";
+import Login from '@/app/core/Login';
+import Logout from '@/app/core/Logout';
+import { useSession } from 'next-auth/react';
 
 export const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="flex items-center p-2 text-xl w-full bg-red-600 justify-between">
+    <div className="flex w-full items-center justify-between bg-red-600 p-2 text-xl">
       Mapzilla
       {session ? (
         <div className="flex items-center gap-4">

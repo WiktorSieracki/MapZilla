@@ -1,8 +1,9 @@
+import { Navbar } from '@/app/core/navbar';
 import '@/app/globals.css';
+import SessionProviderWrapper from '@/app/homepage/context/SessionProviderWrapper';
+import TanstackProvider from '@/components/providers/tanstack-provider';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { Navbar } from '@/app/homepage/components/navbar';
-import SessionProviderWrapper from '@/app/homepage/context/SessionProviderWrapper';
 // import { AuthProvider } from "./context/AuthProvider";
 
 const geistSans = Geist({
@@ -30,8 +31,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SessionProviderWrapper>
-          <Navbar />
-          {children}
+          <TanstackProvider>
+            <Navbar />
+            {children}
+          </TanstackProvider>
         </SessionProviderWrapper>
       </body>
     </html>
