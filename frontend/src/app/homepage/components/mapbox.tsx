@@ -7,10 +7,10 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { useCenterContext } from "../context/center-context";
-import { CenterContextProps } from "../interface/center-interface";
-import { MakePolygons } from "./make-polygons";
-import { MakeNodes } from "./make-nodes";
+import { useCenterContext } from "@/app/homepage/context/center-context";
+import { CenterContextProps } from "@/app/homepage/interface/center-interface";
+import { MakePolygons } from "@/app/homepage/components/make-polygons";
+import { MakeNodes } from "@/app/homepage/components/make-nodes";
 import { Button } from "@/components/ui/button";
 
 // Fix for default marker icon issue

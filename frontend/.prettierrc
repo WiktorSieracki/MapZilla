@@ -1,0 +1,28 @@
+{
+  "printWidth": 80,
+  "semi": true,
+  "bracketSameLine": true,
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "arrowParens": "always",
+  "singleAttributePerLine": true,
+  "bracketSpacing": true,
+  "organizeImportsSkipDestructiveCodeActions": true,
+  "endOfLine": "lf",
+  "proseWrap": "always",
+  "quoteProps": "consistent",
+  "plugins": [
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": {
+        "proseWrap": "always"
+      }
+    }
+  ]
+}

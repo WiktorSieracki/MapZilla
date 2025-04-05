@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { useCenterContext } from "../context/center-context";
-import { Place } from "../interface/place";
-import { useState } from "react";
+import { useCenterContext } from '@/app/homepage/context/center-context';
+import { Place } from '@/app/homepage/interface/place';
+import { Button } from '@/components/ui/button';
 
 export const MapPoints = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
   const { center, setData, setLocationCenter } = useCenterContext();
@@ -13,10 +12,10 @@ export const MapPoints = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
       center.x + radius
     },${center.y + radius}]`;
     try {
-      const response = await fetch("https://overpass-api.de/api/interpreter", {
-        method: "POST",
+      const response = await fetch('https://overpass-api.de/api/interpreter', {
+        method: 'POST',
         body:
-          "data=" +
+          'data=' +
           encodeURIComponent(`
                           ${square}
                           [out:json]
@@ -29,29 +28,31 @@ export const MapPoints = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
                                 (place) =>
                                   `node(around.center:1200)["${place.prefix}" = "${place.queryName}"];way(around.center:1200)["${place.prefix}" = "${place.queryName}"];relation(around.center:1200)["${place.prefix}" = "${place.queryName}"];`
                               )
-                              .join("")}
+                              .join('')}
                             );
                             out geom;
                             `),
       });
 
-      const contentType = response.headers.get("content-type");
-      if (contentType && contentType.indexOf("application/json") !== -1) {
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.indexOf('application/json') !== -1) {
         const result = await response.json();
         console.log(result);
         setData(result);
       } else {
         const text = await response.text();
-        console.error("Unexpected response format:", text);
+        console.error('Unexpected response format:', text);
       }
     } catch (error) {
-      console.error("Error fetching data: ", error);
+      console.error('Error fetching data: ', error);
     }
   };
 
   return (
     <div>
-      <Button className="m-1" onClick={fetchData}>
+      <Button
+        className="m-1"
+        onClick={fetchData}>
         Find Locations
       </Button>
     </div>

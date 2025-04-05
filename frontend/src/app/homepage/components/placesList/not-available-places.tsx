@@ -1,6 +1,7 @@
-import { useCenterContext } from "@/app/context/center-context";
-import { Place } from "@/app/interface/place";
-import React from "react";
+import { useCenterContext } from '@/app/homepage/context/center-context';
+import { Node, Way } from '@/app/homepage/interface/map-objects';
+import { Place } from '@/app/homepage/interface/place';
+import React from 'react';
 
 interface NotAvailablePlacesProps {
   selectedPlaces: Place[];
@@ -13,9 +14,9 @@ export const NotAvailablePlaces = ({
 
   const availablePlaces = selectedPlaces.filter((place) => {
     return data?.elements.some(
-      (element: any) =>
-        element.tags.amenity === place.queryName ||
-        element.tags.leisure === place.queryName
+      (element: Node | Way) =>
+        element.tags?.amenity === place.queryName ||
+        element.tags?.leisure === place.queryName
     );
   });
 
@@ -30,8 +31,7 @@ export const NotAvailablePlaces = ({
         {notAvailablePlaces.map((place) => (
           <li
             key={place.id}
-            className="bg-red-500 p-2 m-2 rounded-lg text-gray-100"
-          >
+            className="m-2 rounded-lg bg-red-500 p-2 text-gray-100">
             {place.readableName}
           </li>
         ))}

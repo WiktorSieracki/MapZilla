@@ -1,6 +1,7 @@
-import React from "react";
-import { useCenterContext } from "../../context/center-context";
-import { Place } from "../../interface/place";
+import { useCenterContext } from '@/app/homepage/context/center-context';
+import { Node, Way } from '@/app/homepage/interface/map-objects';
+import { Place } from '@/app/homepage/interface/place';
+import React from 'react';
 
 interface AvaiablePlacesProps {
   selectedPlaces: Place[];
@@ -11,9 +12,9 @@ export const AvaiablePlaces = ({ selectedPlaces }: AvaiablePlacesProps) => {
 
   const availablePlaces = selectedPlaces.filter((place) => {
     return data?.elements.some(
-      (element: any) =>
-        element.tags.amenity === place.queryName ||
-        element.tags.leisure === place.queryName
+      (element: Node | Way) =>
+        element.tags?.amenity === place.queryName ||
+        element.tags?.leisure === place.queryName
     );
   });
 
@@ -24,12 +25,10 @@ export const AvaiablePlaces = ({ selectedPlaces }: AvaiablePlacesProps) => {
         {availablePlaces.map((place) => (
           <li
             key={place.id}
-            className="flex items-center p-2 m-2 rounded-lg border-2  border-green-600"
-          >
+            className="m-2 flex items-center rounded-lg border-2 border-green-600 p-2">
             <span
-              className="inline-block w-4 h-4 mr-2 rounded-full"
-              style={{ backgroundColor: place.color }}
-            ></span>
+              className="mr-2 inline-block h-4 w-4 rounded-full"
+              style={{ backgroundColor: place.color }}></span>
             {place.readableName}
           </li>
         ))}

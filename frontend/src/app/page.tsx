@@ -1,21 +1,17 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { MapPoints } from "./components/mappoints";
-import { MultiSelect } from "./components/multi-select";
-import { CenterContextProvider } from "./context/center-context";
-import { Place } from "./interface/place";
-import { PlacesList } from "./components/placesList/places-list";
-import { Score } from "./components/placesList/score";
-import { places } from "@/app/interface/place";
-import dynamic from "next/dynamic";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
-import { useSession } from "next-auth/react";
-import { Favourite } from "./components/favourite";
+import { Favourite } from '@/app/homepage/components/favourite';
+import { MapPoints } from '@/app/homepage/components/mappoints';
+import { MultiSelect } from '@/app/homepage/components/multi-select';
+import { PlacesList } from '@/app/homepage/components/placesList/places-list';
+import { Score } from '@/app/homepage/components/placesList/score';
+import { CenterContextProvider } from '@/app/homepage/context/center-context';
+import { Place, places } from '@/app/homepage/interface/place';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
 
 const MapBox = dynamic(
-  () => import("./components/mapbox").then((mod: any) => mod.default),
+  () => import('@/app/homepage/components/mapbox').then((mod) => mod.default),
   { ssr: false }
 );
 
@@ -36,7 +32,7 @@ export default function Home() {
   }));
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <CenterContextProvider>
         <div className="flex gap-4">
           <div>

@@ -1,6 +1,6 @@
 import { CircleMarker, Popup } from "react-leaflet";
-import { Node, Way } from "../interface/map-objects";
-import { places } from "../interface/place";
+import { Node, Way } from "@/app/homepage/interface/map-objects";
+import { places } from "@/app/homepage/interface/place";
 
 interface ElementProps {
   elements: (Node | Way)[];

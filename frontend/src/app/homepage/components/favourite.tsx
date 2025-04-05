@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { useCenterContext } from "../context/center-context";
-import { Place } from "../interface/place";
+import { useCenterContext } from '@/app/homepage/context/center-context';
+import { Place } from '@/app/homepage/interface/place';
+import { Button } from '@/components/ui/button';
 
 interface FavouriteProps {
   lat: number;
@@ -15,9 +15,9 @@ export const Favourite = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
 
   const availablePlaces = selectedPlaces.filter((place) => {
     return data?.elements.some(
-      (element: any) =>
-        element.tags.amenity === place.queryName ||
-        element.tags.leisure === place.queryName
+      (element) =>
+        element.tags?.amenity === place.queryName ||
+        element.tags?.leisure === place.queryName
     );
   });
 
@@ -33,11 +33,13 @@ export const Favourite = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
       availablePlaces: availablePlaces.map((place) => place.readableName),
       notAvailablePlaces: notAvailablePlaces.map((place) => place.readableName),
     };
-    console.log("Post favourite", favourite);
+    console.log('Post favourite', favourite);
   };
 
   return (
-    <Button className="m-1" onClick={postFavourite}>
+    <Button
+      className="m-1"
+      onClick={postFavourite}>
       Add location to Favourites
     </Button>
   );

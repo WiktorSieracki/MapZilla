@@ -3,17 +3,18 @@ export interface Node {
   lat: number;
   lon: number;
   tags?: {
-    "addr:city": string;
-    amenity?: string;
-    leisure?: string;
-    name: string;
+    'addr:city': string;
+    'addr:housenumber'?: string;
+    'amenity'?: string;
+    'leisure'?: string;
+    'name': string;
   };
-  type: "node";
+  type: 'node';
 }
 
 export interface Way {
   id: number;
   geometry: { lat: number; lon: number }[];
   tags?: { name: string; amenity?: string; leisure?: string };
-  type: "way";
+  type: 'way';
 }
