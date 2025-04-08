@@ -21,7 +21,6 @@ const MapBox = dynamic(
 
 export default function Home() {
   const [selectedPlaces, setSelectedPlaces] = useState<Place[]>([]);
-  const { data: session } = useSession();
 
   const handleValueChange = (selectedValues: string[]) => {
     const selectedPlaces = places.filter((place) =>
@@ -36,40 +35,8 @@ export default function Home() {
     label: place.readableName,
   }));
 
-  if (session) {
-    return (
-      <div className="flex flex-col justify-center items-center min-h-screen">
-        <div>Your name is {session.user?.name}</div>
-        <div>
-          <Logout />
-        </div>
-        <CenterContextProvider>
-          <div className="flex gap-4">
-            <div>
-              <MapBox />
-              <MapPoints selectedPlaces={selectedPlaces} />
-              <Favourite selectedPlaces={selectedPlaces} />
-            </div>
-            <div>
-              <MultiSelect
-                className="w-96"
-                options={options}
-                onValueChange={handleValueChange}
-              />
-              <Score selectedPlaces={selectedPlaces} />
-              <PlacesList selectedPlaces={selectedPlaces} />
-            </div>
-          </div>
-        </CenterContextProvider>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <div>
-        <Login />
-      </div>
       <CenterContextProvider>
         <div className="flex gap-4">
           <div>
