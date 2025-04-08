@@ -1,4 +1,11 @@
 package com.mapzilla.backend.feature.favouritePlace.repository;
 
-public interface FavouritePlaceRepository extends  {
+import com.mapzilla.backend.feature.favouritePlace.model.FavouritePlace;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface FavouritePlaceRepository extends JpaRepository<FavouritePlace, UUID> {
+    List<FavouritePlace> findByUserId(String userId);
 }

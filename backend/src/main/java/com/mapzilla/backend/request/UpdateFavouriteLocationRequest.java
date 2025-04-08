@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class UpdateFavouriteLocationRequest {
@@ -18,8 +19,8 @@ public class UpdateFavouriteLocationRequest {
     @Min(value = 0, message = "Lon must be greater than 0")
     private BigDecimal lon;
 
-    private List<String> availablePlaces;
+    private Set<String> availablePlaces;
 
-    private List<String> notAvailablePlaces;
+    private Set<String> notAvailablePlaces;
 
 }

@@ -4,6 +4,8 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
+
 @Data
 public class AddFavouriteLocationRequest {
     private String userId;
@@ -21,8 +23,8 @@ public class AddFavouriteLocationRequest {
     private BigDecimal lon;
 
     @NotNull(message = "List of availablePlaces is required!")
-    private List<String> availablePlaces;
+    private Set<String> availablePlaces;
 
     @NotNull(message = "List of notAvailablePlaces is required!")
-    private List<String> notAvailablePlaces;
+    private Set<String> notAvailablePlaces;
 }
