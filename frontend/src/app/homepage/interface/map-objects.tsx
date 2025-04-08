@@ -1,20 +1,21 @@
+export interface Tags {
+  'name': string;
+  'amenity'?: string;
+  'leisure'?: string;
+  'addr:city'?: string;
+  [key: string]: string | undefined;
+}
 export interface Node {
   id: number;
   lat: number;
   lon: number;
-  tags?: {
-    'addr:city': string;
-    'addr:housenumber'?: string;
-    'amenity'?: string;
-    'leisure'?: string;
-    'name': string;
-  };
+  tags?: Tags;
   type: 'node';
 }
 
 export interface Way {
   id: number;
   geometry: { lat: number; lon: number }[];
-  tags?: { name: string; amenity?: string; leisure?: string };
+  tags?: Tags;
   type: 'way';
 }
