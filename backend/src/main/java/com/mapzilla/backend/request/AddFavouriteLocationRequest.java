@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.util.List;
 @Data
 public class AddFavouriteLocationRequest {
-    @NotBlank(message = "User ID is required and cannot be empty")
     private String userId;
 
     @NotNull(message = "Score is required")
