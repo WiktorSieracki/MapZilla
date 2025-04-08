@@ -1,0 +1,19 @@
+services:
+  keycloak:
+    build:
+      context: ./data
+      dockerfile: Dockerfile.kc
+    restart: always
+    ports:
+      - '8080:8080'
+    networks:
+      - mapzilla-network
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME=localhost
+      - KC_HTTP_PORT=8080
+
+networks:
+  mapzilla-network:
+    name: mapzilla-network
