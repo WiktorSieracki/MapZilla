@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="133898dd-4d06-4c8f-9f45-76f2f09a9fc2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/favouritePlace/controller/FavouritePlaceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/favouritePlace/model/FavouritePlace.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/favouritePlace/service/FavouritePlaceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/favouritePlace/service/FavouritePlaceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.11.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.11.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.11.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.11.1/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.11.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.11.1/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/controller/FavouriteLocationControler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/favouritePlace/repository/FavouritePlaceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/favouritePlace/repository/FavouritePlaceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/model/FavouriteLocation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/repository/FavouriteLocationRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/request/AddFavouriteLocationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/request/AddFavouriteLocationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/request/UpdateFavouriteLocationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/request/UpdateFavouriteLocationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/service/FavouriteLocationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/service/IFavouriteLocationService.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +174,7 @@
       <workItem from="1738624190458" duration="1853000" />
       <workItem from="1742597683905" duration="3237000" />
       <workItem from="1743693492657" duration="1661000" />
-      <workItem from="1744137350043" duration="2234000" />
+      <workItem from="1744137350043" duration="2883000" />
     </task>
     <servers />
   </component>
@@ -198,11 +182,33 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="7d58aad1-eb35-4c31-ad92-ede4862b25ad" value="TOOL_WINDOW" />
+        <entry key="b7cc9155-3c02-425d-af7c-effe3fdaa455" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="7d58aad1-eb35-4c31-ad92-ede4862b25ad">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
+          </value>
+        </entry>
+        <entry key="b7cc9155-3c02-425d-af7c-effe3fdaa455">
+          <value>
+            <State>
+              <option name="TEXT_FILTER_SETTINGS">
+                <TextFilterSettings>
+                  <option name="MATCH_CASE" value="true" />
+                </TextFilterSettings>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
