@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29ac1521-c47d-4c1d-b67f-cd3e3915dd1d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/.gradle/8.11.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/8.11.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/.gradle/8.11.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/8.11.1/executionHistory/executionHistory.lock" afterDir="false" />
@@ -15,19 +15,8 @@
       <change beforePath="$PROJECT_DIR$/backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/classes/java/main/com/mapzilla/backend/BackendApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/classes/java/main/com/mapzilla/backend/BackendApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/classes/java/main/com/mapzilla/backend/configuration/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/classes/java/main/com/mapzilla/backend/configuration/SecurityConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/classes/java/main/com/mapzilla/backend/favourite/controller/FavouriteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/classes/java/main/com/mapzilla/backend/favourite/controller/FavouriteController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/reports/problems/problems-report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/BackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/BackendApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/controller/FavouriteLocationControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/controller/FavouriteLocationControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/request/AddFavouriteLocationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/request/AddFavouriteLocationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/request/UpdateFavouriteLocationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/request/UpdateFavouriteLocationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/service/FavouriteLocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mapzilla/backend/service/FavouriteLocationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/mapzilla/backend/BackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/mapzilla/backend/BackendApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +34,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/backend">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -58,6 +50,13 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -79,31 +78,193 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build backend.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;refactor/use-jwt-for-user-id&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/barteoo/Documents/mapzilla/MapZilla&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.BackendApplicationTests.FavouriteLocationController_CreateLocation_ReturnCreated.executor": "Run",
+    "Gradle.BackendApplicationTests.contextLoads.executor": "Run",
+    "Gradle.Build backend.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.CreateLocation_ReturnBadRequest.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.CreateLocation_ReturnBadRequest_Lat.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.CreateLocation_ReturnBadRequest_Lon.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.CreateLocation_ReturnBadRequest_Score.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.CreateLocation_ReturnCreated.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.CreateLocation_ReturnCreated_CheckResponse.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.DeleteFavouriteLocationById_ReturnNotFound.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.DeleteFavouriteLocationById_ReturnSuccess.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.FavouriteLocationController_CreateLocation_ReturnBadRequest.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.FavouriteLocationController_CreateLocation_ReturnCreated.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.FavouriteLocationController_CreateLocation_ReturnCreatedCheck.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.FavouriteLocationController_CreateLocation_ReturnCreatedd.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.FavouriteLocationController_CreateLocation_ReturnCreateds.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.GetFavouriteLocationById_ReturnNotFound.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.GetFavouriteLocationById_ReturnSuccess.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.GetFavouriteLocationsByUserId_ReturnSuccess.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.GetFavouriteLocationsByUserId_ReturnSuccess_Empty.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.GetFavouriteLocationsByUserId_Unauthorized.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Lat.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Lon.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Score.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.UpdateFavouriteLocationById_ReturnNotFound.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.UpdateFavouriteLocationById_ReturnSuccess.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.executor": "Run",
+    "Gradle.FavouriteLocationControlerTest.shouldReturn400_WhenScoreIsMissing.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.BackendApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "use-jwt-for-user-id",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/barteoo/Documents/mapzilla/MapZilla",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RunManager" selected="Gradle.FavouriteLocationControlerTest">
+    <configuration name="FavouriteLocationControlerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/backend" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.mapzilla.backend.FavouriteLocationControlerTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Lat" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/backend" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.mapzilla.backend.FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Lat&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Lon" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/backend" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.mapzilla.backend.FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Lon&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Score" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/backend" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.mapzilla.backend.FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Score&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="FavouriteLocationControlerTest.UpdateFavouriteLocationById_ReturnNotFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/backend" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.mapzilla.backend.FavouriteLocationControlerTest.UpdateFavouriteLocationById_ReturnNotFound&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.FavouriteLocationControlerTest" />
+        <item itemvalue="Gradle.FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Lon" />
+        <item itemvalue="Gradle.FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Lat" />
+        <item itemvalue="Gradle.FavouriteLocationControlerTest.UpdateFavouriteLocationById_BadRequest_Score" />
+        <item itemvalue="Gradle.FavouriteLocationControlerTest.UpdateFavouriteLocationById_ReturnNotFound" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
