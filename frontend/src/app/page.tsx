@@ -15,7 +15,7 @@ const MapBox = dynamic(
   { ssr: false }
 );
 
-export default function Home() {
+const Home = () => {
   const [selectedPlaces, setSelectedPlaces] = useState<Place[]>([]);
 
   const handleValueChange = (selectedValues: string[]) => {
@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <CenterContextProvider>
-        <div className="flex gap-4">
+        <div className="flex gap-4 rounded-lg bg-[#709176] bg-opacity-70 p-6">
           <div>
             <MapBox />
             <MapPoints selectedPlaces={selectedPlaces} />
@@ -53,4 +53,6 @@ export default function Home() {
       </CenterContextProvider>
     </div>
   );
-}
+};
+
+export default Home;
