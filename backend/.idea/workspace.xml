@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="133898dd-4d06-4c8f-9f45-76f2f09a9fc2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/map/enums/PlaceType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/map/enums/TagKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/map/service/QueryBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/map/controller/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/map/controller/MapController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/map/dto/OverpassApiRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/map/dto/OverpassApiRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/map/service/OverpassApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mapzilla/backend/feature/map/service/OverpassApiClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

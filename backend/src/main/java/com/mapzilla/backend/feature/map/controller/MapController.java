@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@RequestMapping("/map")
 public class MapController {
 
     private final OverpassApiClient overpassApiClient;
@@ -22,7 +23,7 @@ public class MapController {
         this.overpassApiClient = overpassApiClient;
     }
 
-    @PostMapping("/data")
+    @PostMapping("/locate")
     public Mono<String> getMapData(@RequestBody OverpassApiRequest request) {
         String selectedPlaces = QueryBuilder.buildQuery(
             request.getLat(),
