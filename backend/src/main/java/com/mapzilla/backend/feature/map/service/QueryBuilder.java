@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 public class QueryBuilder {
 
+    private QueryBuilder() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static String buildQuery(double lat, double lon, Set<PlaceType> types, int radius) {
         return types.stream()
                 .map(type -> buildPlaceQuery(type, lat, lon, radius))
