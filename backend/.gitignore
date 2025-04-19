@@ -37,5 +37,4 @@ out/
 .vscode/
 
 ### OUR ###
-backend/.idea/
-backend/.idea/**
+.idea/
