@@ -19,9 +19,6 @@ public class OverpassApiClient {
     @Value("${app.api.base-url}")
     private String apiUrl;
 
-//    public OverpassApiClient(WebClient.Builder webClientBuilder) {
-//        this.webClient = webClientBuilder.baseUrl("https://overpass-api.de").build();
-//    }
     public OverpassApiClient(WebClient.Builder webClientBuilder) {
         ExchangeStrategies strategies = ExchangeStrategies.builder()
                 .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(maxInMemorySize))
@@ -29,29 +26,27 @@ public class OverpassApiClient {
 
         this.webClient = webClientBuilder
                 .baseUrl("https://overpass-api.de")
+                .defaultHeader("Accept", "application/json")
                 .exchangeStrategies(strategies)
                 .build();
     }
 
-    public Mono<String> getMapData(String square, String centerX, String centerY, String selectedPlaces) {
+    public Mono<String> getMapData(double lat, double lon, int radius, String selectedPlaces) {
         String overpassQuery = String.format("""
-            %s
-            
-            node(around:1200, %s, %s)->.center;
+            [out:json];
             (
                 %s
             );
             out geom;
-            """, square, centerX, centerY, selectedPlaces);
+            """, selectedPlaces);
 
         log.info("Sending Overpass query:\n{}", overpassQuery);
 
-
         return webClient.post()
-                .uri("/api/interpreter")
-                .bodyValue("data=" + overpassQuery)
-                .retrieve()
-                .bodyToMono(String.class);
+            .uri("/api/interpreter")
+            .bodyValue("data=" + overpassQuery)
+            .retrieve()
+            .bodyToMono(String.class);
     }
 
 }
