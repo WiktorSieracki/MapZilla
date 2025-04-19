@@ -14,14 +14,14 @@ public class OverpassApiClient {
 
     private final WebClient webClient;
 
-    private int maxInMemorySize = 5 * 1024 * 1024; // np. 5 MB
+    private static final int MAX_IN_MEMORY_SIZE = 5 * 1024 * 1024; // np. 5 MB
 
     @Value("${app.api.base-url}")
     private String apiUrl;
 
     public OverpassApiClient(WebClient.Builder webClientBuilder) {
         ExchangeStrategies strategies = ExchangeStrategies.builder()
-                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(maxInMemorySize))
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(MAX_IN_MEMORY_SIZE))
                 .build();
 
         this.webClient = webClientBuilder
