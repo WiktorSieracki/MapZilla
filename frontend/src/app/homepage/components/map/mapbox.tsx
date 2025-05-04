@@ -1,9 +1,8 @@
-import { MakeNodes } from '@/app/homepage/components/make-nodes';
-import { MakePolygons } from '@/app/homepage/components/make-polygons';
+import { MakeNodes } from '@/app/homepage/components/map/make-nodes';
+import { MakePolygons } from '@/app/homepage/components/map/make-polygons';
 import { useCenterContext } from '@/app/homepage/context/center-context';
 import { CenterContextProps } from '@/app/homepage/interface/center-interface';
 import { Button } from '@/components/ui/button';
-import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
   MapContainer,
@@ -12,20 +11,9 @@ import {
   TileLayer,
   useMapEvents,
 } from 'react-leaflet';
+import { configureMapIcons } from './map-config';
 
-// Fix for default marker icon issue
-L.Icon.Default.prototype.options.iconUrl =
-  'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png';
-L.Icon.Default.prototype.options.iconRetinaUrl =
-  'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png';
-L.Icon.Default.prototype.options.shadowUrl =
-  'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png';
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-});
+configureMapIcons();
 
 function LocationMarker({ setCenter }: CenterContextProps) {
   useMapEvents({
