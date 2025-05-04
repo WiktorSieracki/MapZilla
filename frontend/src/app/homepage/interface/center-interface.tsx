@@ -5,6 +5,8 @@ export interface CenterContextProps {
   setCenter: (center: { x: number; y: number }) => void;
   data: OverpassApiResponse | null;
   setData: (data: OverpassApiResponse) => void;
+  searchKey: number;
+  setSearchKey: (key: number) => void;
   locationCenter?: { x: number; y: number };
   setLocationCenter?: (locationCenter: { x: number; y: number }) => void;
 }

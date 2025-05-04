@@ -15,23 +15,28 @@ import { configureMapIcons } from './map-config';
 
 configureMapIcons();
 
-function LocationMarker({ setCenter }: CenterContextProps) {
+function LocationMarker({
+  setCenter,
+  searchKey,
+  setSearchKey,
+}: CenterContextProps) {
   useMapEvents({
-    moveend(e) {
-      const map = e.target;
-      setCenter({ x: map.getCenter().lat, y: map.getCenter().lng });
+    click(e) {
+      setCenter({ x: e.latlng.lat, y: e.latlng.lng });
     },
   });
   return null;
 }
 
 const MapBox = () => {
-  const { center, setCenter, data, setData } = useCenterContext();
+  const { center, setCenter, data, setData, searchKey, setSearchKey } =
+    useCenterContext();
 
   return (
     <div>
       <div className="h-[600px] w-[600px]">
         <MapContainer
+          key={searchKey}
           center={[center.x, center.y]}
           zoom={13}
           scrollWheelZoom={true}
@@ -52,6 +57,8 @@ const MapBox = () => {
             setCenter={setCenter}
             data={data}
             setData={setData}
+            searchKey={searchKey}
+            setSearchKey={setSearchKey}
           />
         </MapContainer>
       </div>
