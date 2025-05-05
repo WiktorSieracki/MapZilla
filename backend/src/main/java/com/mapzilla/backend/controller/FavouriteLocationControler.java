@@ -9,12 +9,16 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
+
 @RestController
 @RequestMapping("/favourite-location")
 @RequiredArgsConstructor
@@ -23,17 +27,32 @@ public class FavouriteLocationControler {
     @PostMapping
     public ResponseEntity<ApiResponse> addFavouriteLocation(@RequestBody @Valid AddFavouriteLocationRequest request){
         try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            Jwt jwt = (Jwt) authentication.getPrincipal();
+            String userId = jwt.getClaim("sub");
+            request.setUserId(userId);
             FavouriteLocation favouriteLocation = favouriteLocationService.addFavouriteLocation(request);
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(new ApiResponse("Success!", favouriteLocation));
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse(e.getMessage(), null));
+        }catch (JwtException e){
+            return ResponseEntity.status(UNAUTHORIZED).body(new ApiResponse(e.getMessage(), null));
         }
     }
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<ApiResponse> getFavouriteLocationsByUserId(@PathVariable String userId) {
-        List<FavouriteLocation> locations = favouriteLocationService.getFavouriteLocationsByUserId(userId);
-        return ResponseEntity.ok(new ApiResponse("Success!", locations));
+    @GetMapping("/user")
+    public ResponseEntity<ApiResponse> getFavouriteLocationsByUserId() {
+        try{
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            Jwt jwt = (Jwt) authentication.getPrincipal();
+            String userId = jwt.getClaim("sub");
+            List<FavouriteLocation> locations = favouriteLocationService.getFavouriteLocationsByUserId(userId);
+            return ResponseEntity.ok(new ApiResponse("Success!", locations));
+        }catch(JwtException e){
+
+            return ResponseEntity.status(UNAUTHORIZED).body(new ApiResponse(e.getMessage(), null));
+
+        }
     }
     @GetMapping("")
     public ResponseEntity<ApiResponse> getAllLocations() {

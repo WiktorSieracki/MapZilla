@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 public class UpdateFavouriteLocationRequest {
-    private String userId;
     @Min(value = 0, message = "Score must be greater than 0")
     private BigDecimal score;
 

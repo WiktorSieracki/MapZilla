@@ -6,8 +6,11 @@ import com.mapzilla.backend.repository.FavouriteLocationRepository;
 import com.mapzilla.backend.request.AddFavouriteLocationRequest;
 import com.mapzilla.backend.request.UpdateFavouriteLocationRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.nio.channels.ScatteringByteChannel;
 import java.util.List;
 
 @Service
@@ -17,6 +20,7 @@ public class FavouriteLocationService implements IFavouriteLocationService{
     private final FavouriteLocationRepository favouriteLocationRepository;
     @Override
     public FavouriteLocation addFavouriteLocation(AddFavouriteLocationRequest request) {
+
         FavouriteLocation location = new FavouriteLocation();
         location.setUserId(request.getUserId());
         location.setScore(request.getScore());
