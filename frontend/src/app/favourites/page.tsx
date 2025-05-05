@@ -1,100 +1,89 @@
 'use client';
 
-interface FavoritePlace {
-  score: number;
-  lat: number;
-  lon: number;
-  availablePlaces: string[];
-  notAvailablePlaces: string[];
-}
+import { FavoriteCard } from '@/app/favourites/components/favorite-card';
+import { LocationComparison } from '@/app/favourites/components/location-comparison';
+import type { FavoritePlace } from '@/app/favourites/types';
+import { useState } from 'react';
 
 const Favourites = () => {
+  const [selectedLocations, setSelectedLocations] = useState<FavoritePlace[]>(
+    []
+  );
+
   // For now using mock data, later we'll fetch from API
   const favorites: FavoritePlace[] = [
     {
-      score: 0.5,
+      name: 'Warsaw, Poland',
+      score: 2 / 3,
       lat: 52.2298,
       lon: 21.0122,
-      availablePlaces: ['Park', 'Kawiarnia'],
-      notAvailablePlaces: ['Szpital', 'Lotnisko'],
+      availablePlaces: ['Place of Worship', 'Park', 'Hospital', 'Restaurant'],
+      notAvailablePlaces: ['Cinema', 'Bank'],
     },
     {
-      score: 0.5,
+      name: 'Rome, Italy',
+      score: 2 / 3,
       lat: 41.8919,
       lon: 12.5113,
-      availablePlaces: ['Restauracja', 'Sklep'],
-      notAvailablePlaces: ['Szkoła', 'Stadion'],
+      availablePlaces: ['Restaurant', 'Park', 'Place of Worship', 'Bank'],
+      notAvailablePlaces: ['Hospital', 'Cinema'],
     },
     {
-      score: 0.5,
+      name: 'Paris, France',
+      score: 2 / 3,
       lat: 48.8566,
       lon: 2.3522,
-      availablePlaces: ['Muzeum', 'Teatr'],
-      notAvailablePlaces: ['Basen', 'Hala sportowa'],
+      availablePlaces: ['Cinema', 'Restaurant', 'Hospital', 'Pharmacy'],
+      notAvailablePlaces: ['Park', 'School'],
     },
     {
-      score: 0.5,
+      name: 'London, UK',
+      score: 2 / 3,
       lat: 51.5074,
       lon: -0.1278,
-      availablePlaces: ['Biblioteka', 'Galeria'],
-      notAvailablePlaces: ['Dworzec', 'Lotnisko'],
+      availablePlaces: ['School', 'Hospital', 'Park', 'Bank'],
+      notAvailablePlaces: ['Cinema', 'Place of Worship'],
     },
   ];
+
+  const handleLocationSelect = (location: FavoritePlace) => {
+    setSelectedLocations((prev) => {
+      if (prev.includes(location)) {
+        return prev.filter((loc) => loc !== location);
+      }
+      if (prev.length >= 2) {
+        return [prev[1], location];
+      }
+      return [...prev, location];
+    });
+  };
 
   return (
     <div className="mx-auto max-w-4xl p-6">
       <h1 className="mb-6 text-2xl font-bold">Your Favorite Locations</h1>
+      <p className="mb-4 text-gray-600">
+        {selectedLocations.length === 0
+          ? 'Select two locations to compare them'
+          : selectedLocations.length === 1
+            ? 'Select one more location to compare'
+            : 'Comparing two locations'}
+      </p>
+      {selectedLocations.length === 2 && (
+        <LocationComparison
+          location1={selectedLocations[0]}
+          location2={selectedLocations[1]}
+        />
+      )}
+
       <div className="grid gap-4">
         {favorites.map((place, index) => (
-          <div
+          <FavoriteCard
             key={index}
-            className="rounded-lg bg-white p-4 shadow-md">
-            <div className="mb-4 flex items-start justify-between">
-              <div>
-                <h2 className="mb-2 text-xl font-semibold">
-                  Location {index + 1}
-                </h2>
-                <p className="text-gray-600">
-                  Coordinates: {place.lat}, {place.lon}
-                </p>
-              </div>
-              <div className="rounded bg-blue-100 px-3 py-1 font-medium text-blue-800">
-                Score: {Math.round(place.score * 100)}%
-              </div>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <h3 className="mb-2 font-medium text-green-600">
-                  Available Places
-                </h3>
-                <ul className="list-inside list-disc">
-                  {place.availablePlaces.map((item, i) => (
-                    <li
-                      key={i}
-                      className="text-gray-700">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="mb-2 font-medium text-red-600">
-                  Not Available Places
-                </h3>
-                <ul className="list-inside list-disc">
-                  {place.notAvailablePlaces.map((item, i) => (
-                    <li
-                      key={i}
-                      className="text-gray-700">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+            place={place}
+            index={index}
+            isSelected={selectedLocations.includes(place)}
+            onSelect={() => handleLocationSelect(place)}
+          />
         ))}
       </div>
     </div>
