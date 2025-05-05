@@ -1,12 +1,12 @@
-import NextAuth, { AuthOptions } from "next-auth";
-import KeycloakProvider from "next-auth/providers/keycloak";
+import NextAuth, { AuthOptions } from 'next-auth';
+import KeycloakProvider from 'next-auth/providers/keycloak';
 
 const authOptions: AuthOptions = {
   providers: [
     KeycloakProvider({
-      clientId: "mapzilla-rest-api",
-      clientSecret: "**********", //shouldn't do that, extract later
-      issuer: "http://localhost:8080/realms/Mapzilla",
+      clientId: 'mapzilla-rest-api',
+      clientSecret: '**********', //shouldn't do that, extract later
+      issuer: 'http://keycloak:8080/realms/Mapzilla',
     }),
   ],
 };

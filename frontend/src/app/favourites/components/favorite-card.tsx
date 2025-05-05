@@ -9,7 +9,6 @@ interface FavoriteCardProps {
 
 export const FavoriteCard = ({
   place,
-  index,
   isSelected,
   onSelect,
 }: FavoriteCardProps) => {
