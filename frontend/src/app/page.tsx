@@ -9,7 +9,7 @@ import { CenterContextProvider } from '@/app/homepage/context/center-context';
 import { Place, places } from '@/app/homepage/interface/place';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { Search } from './homepage/components/search';
+import { Search } from '@/app/homepage/components/search';
 
 const MapBox = dynamic(
   () =>

@@ -60,7 +60,7 @@ Patrząc na ciągle rozwijający się rynek nieruchomości, konsumenci mogą mie
 
 == Czym jest miasto 15 minut?
 
-Miasto 15 minut to koncepcja urbanistyczna, w której mieszkańcy mają dostęp do najważniejszych udogodnień w zasięgu 15 minut pieszo. Do udogodnień zalicza się szkoły, sklepy spożywcze, apteki, przychodnie oraz miejsca rekreacji.
+Miasto 15 minut to koncepcja urbanistyczna, w której mieszkańcy mają dostęp do najważniejszych udogodnień w zasięgu 15 minut pieszo. Do udogodnień zalicza się szkoły, sklepy spożywcze, apteki, przychodnie oraz miejsca rekreacji. @pfr_miasto15
 
 #figure(
   image("assets/miasto15minut.png", width: 75%),
@@ -103,6 +103,19 @@ Miasto 15 minut to koncepcja urbanistyczna, w której mieszkańcy mają dostęp 
 - *Dla mieszkańców* — pomoc w wyborze odpowiedniego miejsca do zamieszkania
 - *Dla deweloperów* — planowanie inwestycji mieszkaniowych w najlepszych lokalizacjach
 - *Dla władz miasta* — rozwój infrastruktury społecznej oraz planowanie przestrzenne
+
+= Użyte technologie
+
+== Backend
+- *Spring Boot* — framework do budowy aplikacji webowych w języku Java
+
+== Frontend
+- *React* — biblioteka do budowy interfejsów użytkownika
+- *Next.js* — framework do budowy aplikacji webowych w React
+- *Tailwind CSS* — framework CSS do budowy responsywnych interfejsów użytkownika
+
+== Pozostałe
+- *OpenStreetMap* — otwarta mapa świata, która pozwala na dodawanie i edytowanie danych geograficznych
 
 = Testowanie Aplikacji
 

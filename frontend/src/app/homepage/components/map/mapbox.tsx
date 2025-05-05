@@ -1,5 +1,6 @@
 import { MakeNodes } from '@/app/homepage/components/map/make-nodes';
 import { MakePolygons } from '@/app/homepage/components/map/make-polygons';
+import { configureMapIcons } from '@/app/homepage/components/map/map-config';
 import { useCenterContext } from '@/app/homepage/context/center-context';
 import { CenterContextProps } from '@/app/homepage/interface/center-interface';
 import { Button } from '@/components/ui/button';
@@ -11,15 +12,10 @@ import {
   TileLayer,
   useMapEvents,
 } from 'react-leaflet';
-import { configureMapIcons } from './map-config';
 
 configureMapIcons();
 
-function LocationMarker({
-  setCenter,
-  searchKey,
-  setSearchKey,
-}: CenterContextProps) {
+function LocationMarker({ setCenter }: CenterContextProps) {
   useMapEvents({
     click(e) {
       setCenter({ x: e.latlng.lat, y: e.latlng.lng });

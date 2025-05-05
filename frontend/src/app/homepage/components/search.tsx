@@ -3,22 +3,15 @@
 import { useCenterContext } from '@/app/homepage/context/center-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { searchLocation } from '@/hooks/search';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-
-const searchLocation = async (query: string) => {
-  if (!query) return null;
-  const response = await fetch(
-    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`
-  );
-  return response.json();
-};
 
 export const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { setCenter, setSearchKey } = useCenterContext();
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { isLoading, refetch } = useQuery({
     queryKey: ['location', searchQuery],
     queryFn: () => searchLocation(searchQuery),
     enabled: false,
@@ -32,7 +25,7 @@ export const Search = () => {
         x: parseFloat(result.data[0].lat),
         y: parseFloat(result.data[0].lon),
       });
-      setSearchKey(Date.now()); // Use timestamp as key to force reload
+      setSearchKey(Date.now());
     }
   };
 
