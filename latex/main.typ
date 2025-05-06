@@ -117,6 +117,57 @@ Miasto 15 minut to koncepcja urbanistyczna, w której mieszkańcy mają dostęp 
 == Pozostałe
 - *OpenStreetMap* — otwarta mapa świata, która pozwala na dodawanie i edytowanie danych geograficznych
 
+= Użytkowanie aplikacji
+
+== rejestracja
+Aby zarejestrować się w aplikacji, należy podać swoje dane osobowe oraz adres e-mail. Odbywa się to poprzez keycloak, który jest zintegrowany z aplikacją.
+
+#figure(
+  image("assets/rejestracja.png", width: 100%),
+  caption: "Rejestracja w aplikacji"
+)
+
+== logowanie
+Aby zalogować się do aplikacji, należy podać swoją nazwę użytkownika oraz hasło. Po zalogowaniu użytkownik zostaje przekierowany do strony głównej aplikacji.
+
+#figure(
+  image("assets/logowanie.png", width: 100%),
+  caption: "Logowanie do aplikacji"
+)
+
+== mapa
+Aplikacja pozwala na przeglądanie mapy oraz dodawanie nowych lokalizacji. Użytkownik może wybrać interesujące go miejsca i wyszukać ich w okolicy.
+
+#figure(
+  image("assets/zbieranie_miejsc.png", width: 100%),
+  caption: "Mapa z lokalizacjami"
+)
+
+== wyszukiwanie miejsca
+Dzięki wyszukiwarce użytkownik może znaleźć interesujące go miejsca. Wystarczy wpisać nazwę miejsca miasta lub ulicy, a aplikacja przeniesie nas do wybranego miejsca.
+
+#figure(
+  image("assets/wyszukiwanie_miejsca.png", width: 100%),
+  caption: "Wyszukiwanie miejsca"
+)
+
+
+== ulubione miejsca
+Po kliknięciu w nazwę użytkownika w prawym górnym rogu, możemy przejść do zakładki ulubione miejsca. Można tam zauważyć listę ulubionych miejsc, które użytkownik dodał do swojego konta. Każde miejsce ma opisany wynik, koordynaty oraz dostępne i niedostępne tam udogodnienia.
+
+#figure(
+  image("assets/ulubione.png", width: 100%),
+  caption: "Ulubione miejsca"
+)
+
+W tym miejscu możemy także porównywać ulubione miejsca.
+
+#figure(
+  image("assets/porownywanie.png", width: 100%),
+  caption: "Porównanie ulubionych miejsc"
+)
+
+
 = Testowanie Aplikacji
 
 #table(
