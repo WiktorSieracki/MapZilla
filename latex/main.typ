@@ -189,7 +189,7 @@ W tym miejscu możemy także porównywać ulubione miejsca.
   [createLocation_ReturnCreated], [Done],
   [createLocation_ReturnCreated_CheckResponse], [Done],
   [createLocation_ReturnBadRequest_Score], [Done],
-  // ... remaining test cases
+  // ... remaining test cases 
 )
 
 #bibliography("references.bib")
