@@ -110,12 +110,23 @@ Miasto 15 minut to koncepcja urbanistyczna, w której mieszkańcy mają dostęp 
 - *Spring Boot* — framework do budowy aplikacji webowych w języku Java
 
 == Frontend
-- *React* — biblioteka do budowy interfejsów użytkownika
-- *Next.js* — framework do budowy aplikacji webowych w React
-- *Tailwind CSS* — framework CSS do budowy responsywnych interfejsów użytkownika
+*React* — biblioteka do budowy interfejsów użytkownika.
+*Next.js* — framework do budowy aplikacji webowych w React.
+*Tailwind CSS* — framework CSS do budowy responsywnych interfejsów użytkownika. Pozwala na ujednolicenie stylów w całej aplikacji poprzez użycie zmiennych globalnych.
 
-== Pozostałe
-- *OpenStreetMap* — otwarta mapa świata, która pozwala na dodawanie i edytowanie danych geograficznych
+*Next-Auth* - biblioteka do autoryzacji użytkowników w Next.js. Pozwala na odczytanie tokenów JWT i pozyskanie danych użytkownika z Keycloak.
+
+*TanstackQuery* - biblioteka do zarządzania stanem aplikacji. Pozwala na pobieranie danych z backendu. Dzięki niej można łatwo tworzyć ładowania oraz zarządzać błędami.
+
+*Shadcn* - biblioteka z komponentami UI. Pozwala na użycie gotowych komponentów w aplikacji, takich jak przyciski, formularze, inputy itp.
+
+*Keycloak* - system do autoryzacji i zarządzania użytkownikami. Pozwala na rejestrację użytkowników i autentykację ich za pomocą e-maila. Daje możliwość ustalania ról użytkowników np. roli admina lub użytkownika.
+
+*PostgreSQL* - baza danych, w której przechowywane są dane o lokalizacjach, użytkownikach oraz relacjach między nimi.
+
+*Docker* - narzędzie do konteneryzacji aplikacji. Pomaga w środowisku developerskim kontrolować wersje aplikacji oraz jej zależności.
+
+*OpenStreetMap* — otwarta mapa świata, która pozwala na dodawanie i edytowanie danych geograficznych. Dzięki jej możemy znaleźć konkretne miejsce na mapie wpisując nazwę ulicy lub miasta.
 
 = Użytkowanie aplikacji
 
