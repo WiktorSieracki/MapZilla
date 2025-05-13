@@ -1,5 +1,7 @@
 package com.mapzilla.backend.feature.map.service;
 
+import com.mapzilla.backend.feature.history.service.HistoryService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +12,11 @@ import reactor.core.publisher.Mono;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class OverpassApiClient {
 
     private final WebClient webClient;
+    private final HistoryService historyService;
 
     private static final int MAX_IN_MEMORY_SIZE = 5 * 1024 * 1024; // np. 5 MB
 
@@ -41,6 +45,8 @@ public class OverpassApiClient {
             """, selectedPlaces);
 
         log.info("Sending Overpass query:\n{}", overpassQuery);
+
+//        historyService.addToHistory();
 
         return webClient.post()
             .uri("/api/interpreter")
