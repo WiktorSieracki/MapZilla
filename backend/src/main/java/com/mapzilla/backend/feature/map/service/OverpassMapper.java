@@ -23,8 +23,7 @@ public class OverpassMapper {
         return resp.getMapPoints().stream()
                 .map(el -> {
                     MapPoint p = new MapPoint();
-                    p.setType(el.getTags().get("shop"));
-//                    p.setType(PlaceType.valueOf(el.getTags().get("shop").toUpperCase()));
+                    p.setType(el.getType());
                     p.setLat(el.getLat());
                     p.setLon(el.getLon());
                     p.setTags(el.getTags());

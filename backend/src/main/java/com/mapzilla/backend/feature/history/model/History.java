@@ -36,7 +36,7 @@ public class History {
     @JsonBackReference
     User user;
 
-//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//    @JoinColumn(name = "history_id")
-//    Set<Location> places;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "history_id")
+    Set<Location> places;
 }

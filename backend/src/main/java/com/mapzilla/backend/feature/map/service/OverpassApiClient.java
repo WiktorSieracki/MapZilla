@@ -21,7 +21,7 @@ import java.util.List;
 public class OverpassApiClient {
 
     private final WebClient webClient;
-    private final HistoryService historyService;
+//    private final HistoryService historyService;
     private final OverpassMapper mapper;
 
     private static final int MAX_IN_MEMORY_SIZE = 5 * 1024 * 1024; // np. 5 MB
@@ -40,10 +40,10 @@ public class OverpassApiClient {
                 .defaultHeader("Accept", "application/json")
                 .exchangeStrategies(strategies)
                 .build();
-        this.historyService = historyService;
+//        this.historyService = historyService;
     }
 
-    public Mono<List<MapPoint>> getMapData(double lat, double lon, int radius, String selectedPlaces, Jwt jwt) {
+    public Mono<List<MapPoint>> getMapData(double lat, double lon, int radius, String selectedPlaces) {
         String overpassQuery = String.format("""
             [out:json];
             (
@@ -53,8 +53,6 @@ public class OverpassApiClient {
             """, selectedPlaces);
 
         log.info("Sending Overpass query:\n{}", overpassQuery);
-
-//        historyService.addToHistory(jwt, location);
 
         return webClient.post()
             .uri("/api/interpreter")

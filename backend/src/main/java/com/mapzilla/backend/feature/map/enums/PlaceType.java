@@ -1,5 +1,8 @@
 package com.mapzilla.backend.feature.map.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum PlaceType {
     SHOP(TagKey.SHOP),
     RESTAURANT(TagKey.AMENITY, "restaurant"),
@@ -34,4 +37,17 @@ public enum PlaceType {
                 ? String.format("[\"%s\"]", key)
                 : String.format("[\"%s\"=\"%s\"]", key, value);
     }
+
+    public String getKey() {
+        return key;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getQueryName() {
+        return value;
+    }
+
 }

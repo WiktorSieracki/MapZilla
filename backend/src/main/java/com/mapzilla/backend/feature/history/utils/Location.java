@@ -39,6 +39,7 @@ public class Location {
     Set<PlaceType> availablePlaces;
     @ElementCollection
     Set<PlaceType> notAvailablePlaces;
+    //TODO: think if we really need that here
 //    @ElementCollection
 //    List<MapPoint> places = new ArrayList<>();
 }
