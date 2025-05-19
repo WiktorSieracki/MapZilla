@@ -2,7 +2,6 @@ package com.mapzilla.backend.feature.map.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mapzilla.backend.feature.history.utils.Location;
 import com.mapzilla.backend.feature.history.utils.MapPoint;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,5 +1,6 @@
 package com.mapzilla.backend.feature.map.service;
 
+import com.mapzilla.backend.feature.history.service.HistoryService;
 import com.mapzilla.backend.feature.history.utils.Location;
 import com.mapzilla.backend.feature.history.utils.MapPoint;
 import com.mapzilla.backend.feature.map.dto.MapResponse;
@@ -7,6 +8,7 @@ import com.mapzilla.backend.feature.map.dto.MapResponseDto;
 import com.mapzilla.backend.feature.map.dto.OverpassApiRequest;
 import com.mapzilla.backend.feature.map.enums.PlaceType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -21,9 +23,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MapServiceImpl implements MapService {
     private final OverpassApiClient overpassApiClient;
+    private final HistoryService historyService;
+    private final OverpassMapper mapper;
 
     @Override
-    public MapResponseDto getMap(OverpassApiRequest request) {
+    public MapResponseDto getMap(Jwt jwt, OverpassApiRequest request) {
         String selectedPlaces = QueryBuilder.buildQuery(
                 request.getLat(),
                 request.getLon(),
@@ -67,6 +71,9 @@ public class MapServiceImpl implements MapService {
         mapResponse.setAvailablePlaces(availablePlaces);
         mapResponse.setNotAvailablePlaces(missingPlaces);
         mapResponse.setPlaces(mapPoints);
+
+        Location location = Location.from(mapResponse);
+        historyService.addToHistory(jwt, location);
 
         return MapResponseDto.from(mapResponse);
     }

@@ -3,8 +3,6 @@ package com.mapzilla.backend.feature.map.dto;
 import com.mapzilla.backend.feature.history.utils.MapPoint;
 import com.mapzilla.backend.feature.map.enums.PlaceType;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.List;

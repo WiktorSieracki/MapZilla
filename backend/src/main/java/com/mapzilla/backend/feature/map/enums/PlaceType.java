@@ -38,14 +38,6 @@ public enum PlaceType {
                 : String.format("[\"%s\"=\"%s\"]", key, value);
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
     public String getQueryName() {
         return value;
     }

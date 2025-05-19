@@ -27,23 +27,10 @@ public class MapController {
     private final OverpassApiClient overpassApiClient;
     private final MapService mapService;
 
-//    public MapController(OverpassApiClient overpassApiClient) {
-//        this.overpassApiClient = overpassApiClient;
-//    }
-
     @PostMapping("/locate")
     public MapResponseDto getMapData(@AuthenticationPrincipal Jwt jwt, @RequestBody OverpassApiRequest request) {
 
-
-        return mapService.getMap(request);
-
-//        return overpassApiClient.getMapData(
-//                request.getLat(),
-//                request.getLon(),
-//                request.getRadius(),
-//                selectedPlaces,
-//                jwt
-//        );
+        return mapService.getMap(jwt, request);
     }
 
 }
