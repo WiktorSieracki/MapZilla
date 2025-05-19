@@ -1,5 +1,6 @@
 package com.mapzilla.backend.feature.user.mapper;
 
+import com.mapzilla.backend.feature.history.model.History;
 import com.mapzilla.backend.feature.user.dto.UserResponseDto;
 import com.mapzilla.backend.feature.user.model.User;
 import org.springframework.stereotype.Service;
