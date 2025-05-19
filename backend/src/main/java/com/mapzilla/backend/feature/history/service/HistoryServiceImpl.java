@@ -21,7 +21,7 @@ public class HistoryServiceImpl implements HistoryService {
     public void addToHistory(Jwt jwt, Location location) {
         User user = userService.getUser(jwt);
 
-        user.getHistory().getPlaces().add(location);
+//        user.getHistory().getPlaces().add(location);
     }
 
     @Override

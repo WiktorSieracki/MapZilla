@@ -1,0 +1,35 @@
+package com.mapzilla.backend.feature.map.service;
+
+import com.mapzilla.backend.feature.history.utils.MapPoint;
+import com.mapzilla.backend.feature.map.dto.OverpassResponse;
+import com.mapzilla.backend.feature.map.enums.PlaceType;
+import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+@Component
+public class OverpassMapper {
+    public List<MapPoint> toMapPoints(OverpassResponse resp) {
+        return resp.getMapPoints().stream()
+                .map(el -> {
+                    MapPoint p = new MapPoint();
+                    p.setType(el.getTags().get("shop"));
+//                    p.setType(PlaceType.valueOf(el.getTags().get("shop").toUpperCase()));
+                    p.setLat(el.getLat());
+                    p.setLon(el.getLon());
+                    p.setTags(el.getTags());
+                    return p;
+                })
+                .toList();
+    }
+}

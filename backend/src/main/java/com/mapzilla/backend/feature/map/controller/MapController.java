@@ -1,10 +1,13 @@
 package com.mapzilla.backend.feature.map.controller;
 
+import com.mapzilla.backend.feature.history.utils.MapPoint;
 import com.mapzilla.backend.feature.map.dto.OverpassApiRequest;
 import com.mapzilla.backend.feature.map.dto.OverpassQueryRequest;
 import com.mapzilla.backend.feature.map.enums.PlaceType;
 import com.mapzilla.backend.feature.map.service.OverpassApiClient;
 import com.mapzilla.backend.feature.map.service.QueryBuilder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriUtils;
 import reactor.core.publisher.Mono;
@@ -24,7 +27,7 @@ public class MapController {
     }
 
     @PostMapping("/locate")
-    public Mono<String> getMapData(@RequestBody OverpassApiRequest request) {
+    public Mono<List<MapPoint>> getMapData(@AuthenticationPrincipal Jwt jwt, @RequestBody OverpassApiRequest request) {
         String selectedPlaces = QueryBuilder.buildQuery(
             request.getLat(),
             request.getLon(),
@@ -37,7 +40,8 @@ public class MapController {
                 request.getLat(),
                 request.getLon(),
                 request.getRadius(),
-                selectedPlaces
+                selectedPlaces,
+                jwt
         );
     }
 

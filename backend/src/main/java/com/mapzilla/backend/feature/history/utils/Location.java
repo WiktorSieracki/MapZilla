@@ -15,6 +15,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -36,6 +39,6 @@ public class Location {
     Set<PlaceType> availablePlaces;
     @ElementCollection
     Set<PlaceType> notAvailablePlaces;
-    @OneToMany
-    Set<MapPoint> places;
+//    @ElementCollection
+//    List<MapPoint> places = new ArrayList<>();
 }
