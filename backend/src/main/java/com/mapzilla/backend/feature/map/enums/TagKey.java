@@ -1,5 +1,9 @@
 package com.mapzilla.backend.feature.map.enums;
 
+import lombok.Data;
+import lombok.Getter;
+
+@Getter
 public enum TagKey {
     AMENITY("amenity"),
     LEISURE("leisure"),
