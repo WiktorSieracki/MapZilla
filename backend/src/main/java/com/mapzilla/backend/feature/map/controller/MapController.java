@@ -8,6 +8,8 @@ import com.mapzilla.backend.feature.map.enums.PlaceType;
 import com.mapzilla.backend.feature.map.service.MapService;
 import com.mapzilla.backend.feature.map.service.OverpassApiClient;
 import com.mapzilla.backend.feature.map.service.QueryBuilder;
+import com.mapzilla.backend.feature.util.dto.ApiResponse;
+import com.mapzilla.backend.feature.util.enums.SuccessCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -16,21 +18,22 @@ import org.springframework.web.util.UriUtils;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/map")
 @RequiredArgsConstructor
 public class MapController {
 
-    private final OverpassApiClient overpassApiClient;
     private final MapService mapService;
 
     @PostMapping("/locate")
-    public MapResponseDto getMapData(@AuthenticationPrincipal Jwt jwt, @RequestBody OverpassApiRequest request) {
+    public ApiResponse<MapResponseDto> getMapData(@AuthenticationPrincipal Jwt jwt, @RequestBody OverpassApiRequest request) {
 
-        return mapService.getMap(jwt, request);
+        return new ApiResponse<>(
+                SuccessCode.RESPONSE_SUCCESSFUL,
+                "Successfully fetched information",
+                mapService.getMap(jwt, request)
+        );
     }
 
 }
