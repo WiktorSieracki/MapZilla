@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -62,8 +63,6 @@ public class MapServiceImpl implements MapService {
                 }))
                 .collect(Collectors.toSet());
 
-
-
         Set<PlaceType> missingPlaces = selectedTypes.stream()
                 .filter(place -> !availablePlaces.contains(place))
                 .collect(Collectors.toSet());
@@ -71,10 +70,16 @@ public class MapServiceImpl implements MapService {
         mapResponse.setAvailablePlaces(availablePlaces);
         mapResponse.setNotAvailablePlaces(missingPlaces);
         mapResponse.setPlaces(mapPoints);
+        mapResponse.setScore(calculateScore(availablePlaces, missingPlaces, selectedTypes));
 
         Location location = Location.from(mapResponse);
         historyService.addToHistory(jwt, location);
 
         return MapResponseDto.from(mapResponse);
+    }
+
+    private BigDecimal calculateScore(Set<PlaceType> availablePlaces, Set<PlaceType> notAvailablePlaces, Set<PlaceType> allPlaces) {
+
+        return BigDecimal.valueOf((double) availablePlaces.size() / (double) allPlaces.size()).setScale(2, RoundingMode.HALF_UP);
     }
 }
