@@ -2,8 +2,9 @@ package com.mapzilla.backend.feature.user.controller;
 
 import com.mapzilla.backend.feature.user.dto.UserResponseDto;
 import com.mapzilla.backend.feature.user.service.UserService;
+import com.mapzilla.backend.feature.util.dto.ApiResponse;
+import com.mapzilla.backend.feature.util.enums.SuccessCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +21,18 @@ public class UserController {
 
 
     @GetMapping
-    public ResponseEntity<List<UserResponseDto>> getAllUsersExceptSelf(Authentication authentication) {
-        return ResponseEntity.ok(userService.finAllUsersExceptSelf(authentication));
+    public ApiResponse<List<UserResponseDto>> getAllUsersExceptSelf(Authentication authentication) {
+        return new ApiResponse<>(
+                SuccessCode.RESPONSE_SUCCESSFUL,
+                "Successfully fetched all users except yourself",
+                userService.finAllUsersExceptSelf(authentication));
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
-        return ResponseEntity.ok(userService.finAllUsers());
+    public ApiResponse<List<UserResponseDto>> getAllUsers() {
+        return new ApiResponse<>(
+                SuccessCode.RESPONSE_SUCCESSFUL,
+                "Successfully fetched all users",
+                userService.finAllUsers());
     }
 }
