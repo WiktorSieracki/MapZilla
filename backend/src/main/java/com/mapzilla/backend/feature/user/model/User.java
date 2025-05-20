@@ -1,11 +1,16 @@
 package com.mapzilla.backend.feature.user.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.mapzilla.backend.feature.history.model.History;
 import com.mapzilla.backend.feature.user.constants.UserConstants;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
@@ -38,6 +43,9 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private History history;
     private LocalDateTime lastSeen;
 
     @Transient
