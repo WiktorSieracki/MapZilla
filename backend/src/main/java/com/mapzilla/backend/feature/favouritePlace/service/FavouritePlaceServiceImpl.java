@@ -3,7 +3,6 @@ package com.mapzilla.backend.feature.favouritePlace.service;
 import com.mapzilla.backend.exceptions.ResourceNotFoundException;
 import com.mapzilla.backend.feature.favouritePlace.model.FavouritePlace;
 import com.mapzilla.backend.feature.favouritePlace.repository.FavouritePlaceRepository;
-import com.mapzilla.backend.model.FavouriteLocation;
 import com.mapzilla.backend.request.AddFavouriteLocationRequest;
 import com.mapzilla.backend.request.UpdateFavouriteLocationRequest;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class FavouritePlaceImpl implements FavouritePlaceService {
+public class FavouritePlaceServiceImpl implements FavouritePlaceService {
     private final FavouritePlaceRepository favouritePlaceRepository;
 
     @Override

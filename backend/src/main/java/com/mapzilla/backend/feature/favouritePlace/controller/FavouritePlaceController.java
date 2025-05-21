@@ -27,6 +27,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 public class FavouritePlaceController {
     private final IFavouriteLocationService favouriteLocationService;
+
     @PostMapping
     public ResponseEntity<ApiResponse> addFavouriteLocation(@RequestBody @Valid AddFavouriteLocationRequest request){
         try {
@@ -43,6 +44,7 @@ public class FavouritePlaceController {
             return ResponseEntity.status(UNAUTHORIZED).body(new ApiResponse(e.getMessage(), null));
         }
     }
+
     @GetMapping("/user")
     public ResponseEntity<ApiResponse> getFavouriteLocationsByUserId() {
         try{
@@ -57,11 +59,13 @@ public class FavouritePlaceController {
 
         }
     }
+
     @GetMapping("")
     public ResponseEntity<ApiResponse> getAllLocations() {
         List<FavouriteLocation> locations = favouriteLocationService.getAllLocations();
         return ResponseEntity.ok(new ApiResponse("Success!", locations));
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteFavouriteLocationById(@PathVariable Long id) {
         try {
@@ -71,6 +75,7 @@ public class FavouritePlaceController {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse(e.getMessage(), null));
         }
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> getFavouriteLocationById(@PathVariable Long id) {
         try {
@@ -80,6 +85,7 @@ public class FavouritePlaceController {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse(e.getMessage(), null));
         }
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse> updateFavouriteLocationById(@RequestBody @Valid UpdateFavouriteLocationRequest request, @PathVariable Long id) {
         try {
