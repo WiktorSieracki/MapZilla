@@ -17,7 +17,7 @@ export const Navbar = () => {
       </Link>
       {session ? (
         <div className="flex items-center gap-4 font-semibold">
-          <Link href={'/favourites'}>{session.user?.name}</Link>
+          <Link href={'/favourites'}>{session.user?.firstName}</Link>
           <Logout />
         </div>
       ) : (

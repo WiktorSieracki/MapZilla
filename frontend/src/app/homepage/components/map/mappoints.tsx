@@ -1,22 +1,23 @@
 import { useCenterContext } from '@/app/homepage/context/center-context';
 import { Place } from '@/app/homepage/interface/place';
 import { Button } from '@/components/ui/button';
-import { fetchMapPoints } from '@/hooks/fetch-mappoints';
-import { useQuery } from '@tanstack/react-query';
+import { useFetchMapPoints } from '../../hooks/client/use-fetch-mappoints';
 
 export const MapPoints = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
   const { center, setData } = useCenterContext();
 
-  const { isLoading, refetch } = useQuery({
-    queryKey: ['mapPoints', center],
-    queryFn: () => fetchMapPoints(center, selectedPlaces),
-    enabled: false,
+  const { refetch, isLoading } = useFetchMapPoints({
+    lat: center.x,
+    lon: center.y,
+    radius: 1200,
+    types: selectedPlaces.map((place) => place.queryName.toUpperCase()),
   });
 
-  const handleFetch = () => {
-    refetch().then((result) => {
-      setData(result.data);
-    });
+  const handleFetch = async () => {
+    const result = await refetch();
+    if (result.data) {
+      setData(result.data.data);
+    }
   };
 
   return (
