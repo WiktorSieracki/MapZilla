@@ -1,10 +1,13 @@
 package com.mapzilla.backend.feature.favouritePlace.controller;
 
 import com.mapzilla.backend.exceptions.ResourceNotFoundException;
+import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceResponseDto;
+import com.mapzilla.backend.feature.favouritePlace.service.FavouritePlaceService;
+import com.mapzilla.backend.feature.util.dto.ApiResponse;
+import com.mapzilla.backend.feature.util.enums.SuccessCode;
 import com.mapzilla.backend.model.FavouriteLocation;
 import com.mapzilla.backend.request.AddFavouriteLocationRequest;
 import com.mapzilla.backend.request.UpdateFavouriteLocationRequest;
-import com.mapzilla.backend.response.ApiResponse;
 import com.mapzilla.backend.service.IFavouriteLocationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +20,7 @@ import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -27,6 +31,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 public class FavouritePlaceController {
     private final IFavouriteLocationService favouriteLocationService;
+    private final FavouritePlaceService favouritePlaceService;
 
     @PostMapping
     public ResponseEntity<ApiResponse> addFavouriteLocation(@RequestBody @Valid AddFavouriteLocationRequest request){
@@ -60,20 +65,22 @@ public class FavouritePlaceController {
         }
     }
 
-    @GetMapping("")
-    public ResponseEntity<ApiResponse> getAllLocations() {
-        List<FavouriteLocation> locations = favouriteLocationService.getAllLocations();
-        return ResponseEntity.ok(new ApiResponse("Success!", locations));
+    @GetMapping()
+    public ApiResponse<FavouritePlaceResponseDto> getAllLocations() {
+        return new ApiResponse<>(
+                SuccessCode.RESPONSE_SUCCESSFUL,
+                "Successfully fetched favourite places of a user",
+                favouritePlaceService.getAllFavouritePlaces()
+        );
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse> deleteFavouriteLocationById(@PathVariable Long id) {
-        try {
-            favouriteLocationService.deleteFavouriteLocationById(id);
-            return ResponseEntity.status(OK).body(new ApiResponse("Success!", null));
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse(e.getMessage(), null));
-        }
+    @DeleteMapping("/delete/{id}")
+    public ApiResponse<Void> deleteFavouriteLocationById(@PathVariable UUID id) {
+        return new ApiResponse<>(
+                SuccessCode.RESOURCE_DELETED,
+                "Successfully deleted favourite place from list",
+                favouritePlaceService.deleteFavouriteLocationById(id)
+        )
     }
 
     @GetMapping("/{id}")

@@ -14,7 +14,7 @@ public interface FavouritePlaceService {
 
     List<FavouritePlace> getFavouriteLocationsByUserId(String userId);
 
-    List<FavouritePlace> getAllLocations();
+    List<FavouritePlace> getAllFavouritePlaces();
 
     FavouritePlace getFavouriteLocationById(UUID id);
 
