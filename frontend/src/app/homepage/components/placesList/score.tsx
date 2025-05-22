@@ -13,7 +13,7 @@ export const Score = ({ selectedPlaces }: ScorePlaces) => {
   const { data } = useCenterContext();
 
   const availablePlaces = selectedPlaces.filter((place) => {
-    return data?.elements.some(
+    return data?.data.places.some(
       (element: Node | Way) =>
         element.tags?.amenity === place.queryName ||
         element.tags?.leisure === place.queryName

@@ -1,4 +1,4 @@
-import { Node, Way } from '../interface/map-objects';
+import { Node, Way } from '@/app/homepage/interface/map-objects';
 
 export interface LocateRequest {
   lat: number;

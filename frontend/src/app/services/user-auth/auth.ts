@@ -1,9 +1,9 @@
 import axios from 'axios';
 import NextAuth from 'next-auth';
 import Keycloak, { KeycloakProfile } from 'next-auth/providers/keycloak';
-import { Tokens } from './types/tokens';
-import { User } from './types/user';
-import { refreshToken } from './utils/refresh-token';
+import { Tokens } from '@/app/services/user-auth/types/tokens';
+import { User } from '@/app/services/user-auth/types/user';
+import { refreshToken } from '@/app/services/user-auth/utils/refresh-token';
 
 const hasTokenExpired = (expiresAt: number) => Date.now() < expiresAt * 1000;
 

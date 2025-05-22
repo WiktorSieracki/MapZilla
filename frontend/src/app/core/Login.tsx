@@ -1,7 +1,18 @@
-'use client';
+import { signIn } from '@/app/services/user-auth';
 import { Button } from '@/components/ui/button';
-import { signIn } from '../services/user-auth';
 
 export default function Login() {
-  return <Button onClick={() => signIn()}>Login</Button>;
+  return (
+    <form
+      action={async () => {
+        'use server';
+        await signIn('keycloak');
+      }}>
+      <Button
+        type="submit"
+        variant="secondary">
+        Zaloguj się
+      </Button>
+    </form>
+  );
 }

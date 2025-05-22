@@ -1,12 +1,10 @@
-'use client';
-
 import Login from '@/app/core/Login';
 import Logout from '@/app/core/Logout';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { auth } from '@/app/services/user-auth';
 
-export const Navbar = () => {
-  const { data: session } = useSession();
+export const Navbar = async () => {
+  const session = await auth();
 
   return (
     <div className="flex w-full items-center justify-between bg-[#79745C] p-2 text-xl">

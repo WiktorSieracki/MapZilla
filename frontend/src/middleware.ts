@@ -1,8 +1,8 @@
 import { protectedRoutes } from '@/app-config';
+import { auth } from '@/app/services/user-auth';
 import { NextResponse } from 'next/server';
-import { auth } from './app/services/user-auth';
 
-export const middleware = auth(async (request: any) => {
+export const middleware = auth(async (request) => {
   const { nextUrl, auth: session } = request;
   const currentPathName = nextUrl.pathname;
 
