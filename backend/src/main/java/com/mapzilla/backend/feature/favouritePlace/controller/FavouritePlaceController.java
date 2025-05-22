@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtException;
@@ -66,21 +67,21 @@ public class FavouritePlaceController {
     }
 
     @GetMapping()
-    public ApiResponse<FavouritePlaceResponseDto> getAllLocations() {
+    public ApiResponse<FavouritePlaceResponseDto> getAllLocations(@AuthenticationPrincipal Jwt jwt) {
         return new ApiResponse<>(
                 SuccessCode.RESPONSE_SUCCESSFUL,
                 "Successfully fetched favourite places of a user",
-                favouritePlaceService.getAllFavouritePlaces()
+                favouritePlaceService.getAllFavouritePlaces(jwt)
         );
     }
 
     @DeleteMapping("/delete/{id}")
-    public ApiResponse<Void> deleteFavouriteLocationById(@PathVariable UUID id) {
+    public ApiResponse<Void> deleteFavouriteLocationById(@AuthenticationPrincipal Jwt jwt, @PathVariable UUID id) {
         return new ApiResponse<>(
                 SuccessCode.RESOURCE_DELETED,
                 "Successfully deleted favourite place from list",
-                favouritePlaceService.deleteFavouriteLocationById(id)
-        )
+                favouritePlaceService.deleteFavouriteLocationById(jwt, id)
+        );
     }
 
     @GetMapping("/{id}")

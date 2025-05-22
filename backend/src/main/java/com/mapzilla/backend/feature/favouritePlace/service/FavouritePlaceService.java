@@ -1,24 +1,22 @@
 package com.mapzilla.backend.feature.favouritePlace.service;
 
-import com.mapzilla.backend.feature.favouritePlace.model.FavouritePlace;
-import com.mapzilla.backend.model.FavouriteLocation;
-import com.mapzilla.backend.request.AddFavouriteLocationRequest;
-import com.mapzilla.backend.request.UpdateFavouriteLocationRequest;
+import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceCreateDto;
+import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceResponseDto;
+import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceUpdateDto;
+import org.springframework.security.oauth2.jwt.Jwt;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface FavouritePlaceService {
 
-    FavouritePlace addFavouriteLocation(AddFavouriteLocationRequest request);
+    FavouritePlaceResponseDto addFavouritePlace(Jwt jwt, FavouritePlaceCreateDto favouritePlaceCreateDto);
 
-    List<FavouritePlace> getFavouriteLocationsByUserId(String userId);
+    List<FavouritePlaceResponseDto> getAllFavouritePlaces(Jwt jwt);
 
-    List<FavouritePlace> getAllFavouritePlaces();
+    FavouritePlaceResponseDto getFavouritePlaceById(Jwt jwt, UUID id);
 
-    FavouritePlace getFavouriteLocationById(UUID id);
+    void deleteFavouriteLocationById(Jwt jwt, UUID id);
 
-    void deleteFavouriteLocationById(UUID id);
-
-    FavouritePlace updateFavouriteLocationById(UUID id, UpdateFavouriteLocationRequest request);
+    FavouritePlaceResponseDto updateFavouritePlaceById(Jwt jwt, UUID id, FavouritePlaceUpdateDto favouritePlaceUpdateDto);
 }
