@@ -18,8 +18,12 @@ export const MakePolygons = ({ elements }: ElementProps) => {
     };
   });
 
+  if (matchedWays.length === 0) {
+    return null;
+  }
+
   return (
-    <>
+    <div key={matchedWays[0].id}>
       {matchedWays.map((way) => (
         <Polygon
           key={way.id}
@@ -35,6 +39,6 @@ export const MakePolygons = ({ elements }: ElementProps) => {
           </Popup>
         </Polygon>
       ))}
-    </>
+    </div>
   );
 };

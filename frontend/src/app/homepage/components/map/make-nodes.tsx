@@ -18,8 +18,12 @@ export const MakeNodes = ({ elements }: ElementProps) => {
     };
   });
 
+  if (matchNodes.length === 0) {
+    return null;
+  }
+
   return (
-    <div>
+    <div key={matchNodes[0].id}>
       {matchNodes.map((node) => (
         <CircleMarker
           key={node.id}
