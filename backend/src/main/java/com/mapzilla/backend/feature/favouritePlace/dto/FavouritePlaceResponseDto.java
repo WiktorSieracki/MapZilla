@@ -8,11 +8,13 @@ import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class FavouritePlaceResponseDto {
+    UUID id;
     BigDecimal score;
     BigDecimal lat;
     BigDecimal lon;
@@ -21,6 +23,7 @@ public class FavouritePlaceResponseDto {
 
     public static FavouritePlaceResponseDto from(FavouritePlace favouritePlace) {
         return new FavouritePlaceResponseDto(
+                favouritePlace.getId(),
                 favouritePlace.getScore(),
                 favouritePlace.getLat(),
                 favouritePlace.getLon(),

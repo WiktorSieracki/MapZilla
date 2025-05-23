@@ -59,7 +59,7 @@ public class FavouritePlaceController {
         );
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ApiResponse<FavouritePlaceResponseDto> updateFavouriteLocationById(@PathVariable UUID id, @AuthenticationPrincipal Jwt jwt, @RequestBody @Valid FavouritePlaceUpdateDto favouritePlaceUpdateDto) {
         return new ApiResponse<>(
                 SuccessCode.RESOURCE_UPDATED,

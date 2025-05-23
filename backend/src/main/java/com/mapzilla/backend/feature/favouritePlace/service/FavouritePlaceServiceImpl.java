@@ -49,7 +49,10 @@ public class FavouritePlaceServiceImpl implements FavouritePlaceService {
 
     @Override
     public FavouritePlaceResponseDto getFavouritePlaceById(Jwt jwt, UUID id) {
-        FavouritePlace favouritePlace = favouritePlaceRepository.findById(id)
+        User user = userService.getUser(jwt);
+
+        FavouritePlace favouritePlace = favouritePlaceRepository.findByIdAndUserId(id, user.getId())
+                //TODO - change error handling
                 .orElseThrow(() -> new ResourceNotFoundException("Favourite location not found with id: " + id));
 
         return FavouritePlaceResponseDto.from(favouritePlace);
@@ -59,6 +62,7 @@ public class FavouritePlaceServiceImpl implements FavouritePlaceService {
     @Transactional
     public void deleteFavouriteLocationById(Jwt jwt, UUID id) {
         FavouritePlace location = favouritePlaceRepository.findById(id)
+                //TODO - change error handling
                 .orElseThrow(() -> new ResourceNotFoundException("Favourite location not found with id: " + id));
         favouritePlaceRepository.delete(location);
     }
