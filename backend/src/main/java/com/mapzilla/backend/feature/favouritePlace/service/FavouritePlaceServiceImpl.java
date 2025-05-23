@@ -8,8 +8,6 @@ import com.mapzilla.backend.feature.favouritePlace.model.FavouritePlace;
 import com.mapzilla.backend.feature.favouritePlace.repository.FavouritePlaceRepository;
 import com.mapzilla.backend.feature.user.model.User;
 import com.mapzilla.backend.feature.user.service.UserService;
-import com.mapzilla.backend.request.AddFavouriteLocationRequest;
-import com.mapzilla.backend.request.UpdateFavouriteLocationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
