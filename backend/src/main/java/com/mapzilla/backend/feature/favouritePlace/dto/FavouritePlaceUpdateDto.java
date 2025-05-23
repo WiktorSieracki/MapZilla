@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Data
 public class FavouritePlaceUpdateDto {
+    //TODO- add validation
     BigDecimal score;
     BigDecimal lat;
     BigDecimal lon;
