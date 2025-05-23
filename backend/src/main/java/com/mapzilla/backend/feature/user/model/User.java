@@ -2,6 +2,7 @@ package com.mapzilla.backend.feature.user.model;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.mapzilla.backend.feature.favouritePlace.model.FavouritePlace;
 import com.mapzilla.backend.feature.history.model.History;
 import com.mapzilla.backend.feature.user.constants.UserConstants;
 import jakarta.persistence.CascadeType;
@@ -19,6 +20,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -46,6 +49,9 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private History history;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<FavouritePlace> favouritePlaces = new ArrayList<>();
     private LocalDateTime lastSeen;
 
     @Transient
