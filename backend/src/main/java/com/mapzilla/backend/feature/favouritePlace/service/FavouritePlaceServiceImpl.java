@@ -4,8 +4,11 @@ import com.mapzilla.backend.exceptions.ResourceNotFoundException;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceCreateDto;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceResponseDto;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceUpdateDto;
+import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceUpdateRequestDto;
 import com.mapzilla.backend.feature.favouritePlace.model.FavouritePlace;
 import com.mapzilla.backend.feature.favouritePlace.repository.FavouritePlaceRepository;
+import com.mapzilla.backend.feature.label.model.Label;
+import com.mapzilla.backend.feature.label.service.LabelServiceImpl;
 import com.mapzilla.backend.feature.user.model.User;
 import com.mapzilla.backend.feature.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -13,14 +16,18 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class FavouritePlaceServiceImpl implements FavouritePlaceService {
     private final FavouritePlaceRepository favouritePlaceRepository;
     private final UserService userService;
+    private final LabelServiceImpl labelService;
 
     @Override
     @Transactional
@@ -69,11 +76,20 @@ public class FavouritePlaceServiceImpl implements FavouritePlaceService {
 
     @Override
     @Transactional
-    public FavouritePlaceResponseDto updateFavouritePlaceById(Jwt jwt, UUID id, FavouritePlaceUpdateDto favouritePlaceUpdateDto) {
-        FavouritePlace location = favouritePlaceRepository.findById(id)
+    public FavouritePlaceResponseDto updateFavouritePlaceById(Jwt jwt, UUID id, FavouritePlaceUpdateRequestDto favouritePlaceUpdateRequestDto) {
+        FavouritePlace favouritePlace = favouritePlaceRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Favourite location not found with id: " + id));
 
-        FavouritePlace favouritePlace = favouritePlaceRepository.save(location);
+        Set<Label> newLabels = favouritePlaceUpdateRequestDto
+                .getLabels()
+                .map(labelService::getLabelsByIdOrThrow)
+                .orElseGet(HashSet::new);
+
+        FavouritePlaceUpdateDto favouritePlaceUpdateDto = FavouritePlaceUpdateDto.from(favouritePlace, newLabels);
+
+        favouritePlace.update(favouritePlaceUpdateDto);
+        favouritePlaceRepository.save(favouritePlace);
+
         return FavouritePlaceResponseDto.from(favouritePlace);
     }
 

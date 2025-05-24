@@ -3,6 +3,7 @@ package com.mapzilla.backend.feature.favouritePlace.service;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceCreateDto;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceResponseDto;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceUpdateDto;
+import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceUpdateRequestDto;
 import org.springframework.security.oauth2.jwt.Jwt;
 
 import java.util.List;
@@ -18,5 +19,5 @@ public interface FavouritePlaceService {
 
     void deleteFavouriteLocationById(Jwt jwt, UUID id);
 
-    FavouritePlaceResponseDto updateFavouritePlaceById(Jwt jwt, UUID id, FavouritePlaceUpdateDto favouritePlaceUpdateDto);
+    FavouritePlaceResponseDto updateFavouritePlaceById(Jwt jwt, UUID id, FavouritePlaceUpdateRequestDto favouritePlaceUpdateRequestDto);
 }

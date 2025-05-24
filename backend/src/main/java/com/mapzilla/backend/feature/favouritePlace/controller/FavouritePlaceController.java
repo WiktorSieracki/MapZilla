@@ -3,6 +3,7 @@ package com.mapzilla.backend.feature.favouritePlace.controller;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceCreateDto;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceResponseDto;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceUpdateDto;
+import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceUpdateRequestDto;
 import com.mapzilla.backend.feature.favouritePlace.service.FavouritePlaceService;
 import com.mapzilla.backend.feature.util.dto.ApiResponse;
 import com.mapzilla.backend.feature.util.enums.SuccessCode;
@@ -60,11 +61,11 @@ public class FavouritePlaceController {
     }
 
     @PatchMapping("/{id}")
-    public ApiResponse<FavouritePlaceResponseDto> updateFavouriteLocationById(@PathVariable UUID id, @AuthenticationPrincipal Jwt jwt, @RequestBody @Valid FavouritePlaceUpdateDto favouritePlaceUpdateDto) {
+    public ApiResponse<FavouritePlaceResponseDto> updateFavouriteLocationById(@PathVariable UUID id, @AuthenticationPrincipal Jwt jwt, @RequestBody @Valid FavouritePlaceUpdateRequestDto favouritePlaceUpdateRequestDto) {
         return new ApiResponse<>(
                 SuccessCode.RESOURCE_UPDATED,
                 "Successfully updated favourite place with id " + id,
-                favouritePlaceService.updateFavouritePlaceById(jwt, id, favouritePlaceUpdateDto)
+                favouritePlaceService.updateFavouritePlaceById(jwt, id, favouritePlaceUpdateRequestDto)
         );
     }
 }

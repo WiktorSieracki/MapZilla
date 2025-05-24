@@ -64,4 +64,18 @@ public class LabelServiceImpl implements LabelService {
     public void deleteLabel(UUID id) {
         labelRepository.deleteById(id);
     }
+
+    public Set<Label> getLabelsByIdOrThrow(Set<UUID> ids) {
+       Set<Label> labels = labelRepository.findAllByIdIn(ids);
+
+       Set<UUID> foundLabels = labels.stream().map(Label::getId).collect(Collectors.toSet());
+
+       ids.removeAll(foundLabels);
+
+       if (!ids.isEmpty()) {
+           throw new RuntimeException("Labels not found with ids: " + ids);
+       }
+
+       return labels;
+    }
 }
