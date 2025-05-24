@@ -1,6 +1,7 @@
 package com.mapzilla.backend.feature.favouritePlace.dto;
 
 import com.mapzilla.backend.feature.favouritePlace.model.FavouritePlace;
+import com.mapzilla.backend.feature.label.model.Label;
 import com.mapzilla.backend.feature.map.enums.PlaceType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class FavouritePlaceResponseDto {
     BigDecimal lon;
     Set<PlaceType> availablePlaces;
     Set<PlaceType> notAvailablePlaces;
+    Set<Label> labels;
 
     public static FavouritePlaceResponseDto from(FavouritePlace favouritePlace) {
         return new FavouritePlaceResponseDto(
@@ -28,7 +30,8 @@ public class FavouritePlaceResponseDto {
                 favouritePlace.getLat(),
                 favouritePlace.getLon(),
                 favouritePlace.getAvailablePlaces(),
-                favouritePlace.getNotAvailablePlaces()
+                favouritePlace.getNotAvailablePlaces(),
+                favouritePlace.getLabels()
         );
     }
 }
