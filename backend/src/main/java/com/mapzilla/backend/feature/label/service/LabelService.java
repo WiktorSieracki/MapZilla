@@ -5,12 +5,13 @@ import com.mapzilla.backend.feature.label.dto.LabelResponseDto;
 import com.mapzilla.backend.feature.label.dto.LabelUpdateDto;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Service
 public interface LabelService {
 
-    LabelResponseDto getAllLabels();
+    Set<LabelResponseDto> getAllLabels();
 
     LabelResponseDto getLabelById(UUID id);
 
@@ -18,6 +19,6 @@ public interface LabelService {
 
     LabelResponseDto updateLabel(UUID id, LabelUpdateDto labelUpdateDto);
 
-    LabelResponseDto deleteLabel(UUID id);
+    void deleteLabel(UUID id);
 
 }
