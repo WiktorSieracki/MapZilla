@@ -33,9 +33,7 @@ public class MapServiceImpl implements MapService {
                 request.getLon(),
                 Set.copyOf(request.getTypes()),
                 request.getRadius()
-
         );
-
 
         List<MapPoint> mapPoints = overpassApiClient.getMapData(
                 request.getLat(),
