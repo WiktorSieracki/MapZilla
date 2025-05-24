@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 public class MapServiceImpl implements MapService {
     private final OverpassApiClient overpassApiClient;
     private final HistoryService historyService;
-    private final OverpassMapper mapper;
 
     @Override
     public MapResponseDto getMap(Jwt jwt, OverpassApiRequest request) {
@@ -34,9 +33,7 @@ public class MapServiceImpl implements MapService {
                 request.getLon(),
                 Set.copyOf(request.getTypes()),
                 request.getRadius()
-
         );
-
 
         List<MapPoint> mapPoints = overpassApiClient.getMapData(
                 request.getLat(),
