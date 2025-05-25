@@ -1,5 +1,6 @@
 package com.mapzilla.backend.feature.map.service;
 
+import com.mapzilla.backend.feature.history.utils.Geometry;
 import com.mapzilla.backend.feature.history.utils.MapPoint;
 import com.mapzilla.backend.feature.map.dto.OverpassResponse;
 import com.mapzilla.backend.feature.map.enums.PlaceType;
@@ -26,6 +27,7 @@ public class OverpassMapper {
                     p.setType(el.getType());
                     p.setLat(el.getLat());
                     p.setLon(el.getLon());
+                    p.setGeometry(el.getGeometry());
                     p.setTags(el.getTags());
                     return p;
                 })
