@@ -14,6 +14,7 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -25,9 +26,13 @@ public class OverpassMapper {
                 .map(el -> {
                     MapPoint p = new MapPoint();
                     p.setType(el.getType());
-                    p.setLat(el.getLat());
-                    p.setLon(el.getLon());
-                    p.setGeometry(el.getGeometry());
+                    if (Objects.equals(el.getType(), "node")) {
+                        p.setLat(el.getLat());
+                        p.setLon(el.getLon());
+                    }
+                    if (Objects.equals(el.getType(), "way")) {
+                        p.setGeometry(el.getGeometry());
+                    }
                     p.setTags(el.getTags());
                     return p;
                 })
