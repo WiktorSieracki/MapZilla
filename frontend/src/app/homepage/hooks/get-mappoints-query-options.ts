@@ -19,9 +19,11 @@ const fetchMapPoints = async (accessToken: string, location: LocateRequest) => {
 
 export const getMapPointsQueryOptions = (
   accessToken: string,
-  location: LocateRequest
+  location: LocateRequest,
+  enabled = true
 ) =>
   queryOptions<Response<LocateResponse>>({
     queryKey: getMapPointsQueryKey(),
     queryFn: () => fetchMapPoints(accessToken, location),
+    enabled: enabled,
   });

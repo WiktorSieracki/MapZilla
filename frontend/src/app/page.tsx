@@ -25,7 +25,6 @@ const Home = () => {
       selectedValues.includes(place.readableName)
     );
     setSelectedPlaces(selectedPlaces);
-    console.log(selectedPlaces);
   };
 
   const options = places.map((place) => ({

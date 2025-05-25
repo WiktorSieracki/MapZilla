@@ -12,6 +12,8 @@ export const MakeNodes = ({ elements }: ElementProps) => {
   const matchNodes = nodes.map((node) => {
     return {
       ...node,
+      // temporary id for React key
+      id: Math.random().toString(36).substring(7),
       color: places.find(
         (place) => place.queryName === node.tags?.[place.prefix]
       )?.color,
@@ -23,7 +25,7 @@ export const MakeNodes = ({ elements }: ElementProps) => {
   }
 
   return (
-    <div key={matchNodes[0].id}>
+    <>
       {matchNodes.map((node) => (
         <CircleMarker
           key={node.id}
@@ -37,6 +39,6 @@ export const MakeNodes = ({ elements }: ElementProps) => {
           </Popup>
         </CircleMarker>
       ))}
-    </div>
+    </>
   );
 };

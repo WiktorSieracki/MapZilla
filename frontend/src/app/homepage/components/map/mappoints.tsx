@@ -15,7 +15,8 @@ export const MapPoints = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
       lon: center.y,
       radius: 1200,
       types: selectedPlaces.map((place) => place.queryName.toUpperCase()),
-    }
+    },
+    false
   );
 
   const handleFetch = async () => {

@@ -12,6 +12,8 @@ export const MakePolygons = ({ elements }: ElementProps) => {
   const matchedWays = ways.map((way) => {
     return {
       ...way,
+      // temporary id for React key
+      id: Math.random().toString(36).substring(7),
       color: places.find(
         (place) => place.queryName === way.tags?.[place.prefix]
       )?.color,
@@ -21,9 +23,10 @@ export const MakePolygons = ({ elements }: ElementProps) => {
   if (matchedWays.length === 0) {
     return null;
   }
+  console.log('Matched Ways:', matchedWays);
 
   return (
-    <div key={matchedWays[0].id}>
+    <>
       {matchedWays.map((way) => (
         <Polygon
           key={way.id}
@@ -39,6 +42,6 @@ export const MakePolygons = ({ elements }: ElementProps) => {
           </Popup>
         </Polygon>
       ))}
-    </div>
+    </>
   );
 };
