@@ -2,6 +2,8 @@ package com.mapzilla.backend.feature.map.service;
 
 import com.mapzilla.backend.feature.history.utils.Geometry;
 import com.mapzilla.backend.feature.history.utils.MapPoint;
+import com.mapzilla.backend.feature.history.utils.Node;
+import com.mapzilla.backend.feature.history.utils.Way;
 import com.mapzilla.backend.feature.map.dto.OverpassResponse;
 import com.mapzilla.backend.feature.map.enums.PlaceType;
 import org.springframework.stereotype.Component;
@@ -24,17 +26,23 @@ public class OverpassMapper {
     public List<MapPoint> toMapPoints(OverpassResponse resp) {
         return resp.getMapPoints().stream()
                 .map(el -> {
-                    MapPoint p = new MapPoint();
-                    p.setType(el.getType());
-                    if (Objects.equals(el.getType(), "node")) {
-                        p.setLat(el.getLat());
-                        p.setLon(el.getLon());
+                    if(Objects.equals(el.getType(), "node") && el instanceof Node node) {
+                        Node newNode = new Node();
+                        newNode.setType(node.getType());
+                        newNode.setTags(node.getTags());
+                        newNode.setLat(node.getLat());
+                        newNode.setLon(node.getLon());
+                        return newNode;
                     }
-                    if (Objects.equals(el.getType(), "way")) {
-                        p.setGeometry(el.getGeometry());
+                    if(Objects.equals(el.getType(), "way") && el instanceof Way way) {
+                        Way newWay = new Way();
+                        newWay.setType(way.getType());
+                        newWay.setGeometry(way.getGeometry());
+                        newWay.setTags(way.getTags());
+                        return newWay;
+                    } else {
+                        return null;
                     }
-                    p.setTags(el.getTags());
-                    return p;
                 })
                 .toList();
     }
