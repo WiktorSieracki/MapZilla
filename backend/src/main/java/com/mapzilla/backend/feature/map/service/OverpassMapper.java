@@ -7,6 +7,7 @@ import com.mapzilla.backend.feature.history.utils.Relation;
 import com.mapzilla.backend.feature.history.utils.Way;
 import com.mapzilla.backend.feature.map.dto.OverpassResponse;
 import com.mapzilla.backend.feature.map.enums.PlaceType;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -41,10 +42,7 @@ public class OverpassMapper {
                         newWay.setTags(way.getTags());
                         return newWay;
                     } else if (Objects.equals(el.getType(), "relation") && el instanceof Relation relation) {
-                        Relation newRelation = new Relation();
-                        newRelation.setType(relation.getType());
-                        newRelation.setTags(relation.getTags());
-                        newRelation.setMembers(relation.getMembers());
+                        Relation newRelation = getRelation(relation);
                         return newRelation;
                     } else {
                         MapPoint mapPoint = new MapPoint();
@@ -54,5 +52,19 @@ public class OverpassMapper {
                     }
                 })
                 .toList();
+    }
+
+    private static @NotNull Relation getRelation(Relation relation) {
+        Relation newRelation = new Relation();
+        newRelation.setType(relation.getType());
+        newRelation.setTags(relation.getTags());
+        newRelation.setId(relation.getId());
+        newRelation.setTimestamp(relation.getTimestamp());
+        newRelation.setVersion(relation.getVersion());
+        newRelation.setChangeset(relation.getChangeset());
+        newRelation.setUser(relation.getUser());
+        newRelation.setUid(relation.getUid());
+        newRelation.setMembers(relation.getMembers());
+        return newRelation;
     }
 }
