@@ -28,27 +28,22 @@ public class OverpassMapper {
     public List<MapPoint> toMapPoints(OverpassResponse resp) {
         return resp.getMapPoints().stream()
                 .map(el -> {
-                    if(Objects.equals(el.getType(), "node") && el instanceof Node node) {
-                        Node newNode = new Node();
-                        newNode.setType(node.getType());
-                        newNode.setTags(node.getTags());
-                        newNode.setLat(node.getLat());
-                        newNode.setLon(node.getLon());
-                        return newNode;
-                    } else if(Objects.equals(el.getType(), "way") && el instanceof Way way) {
-                        Way newWay = new Way();
-                        newWay.setType(way.getType());
-                        newWay.setGeometry(way.getGeometry());
-                        newWay.setTags(way.getTags());
-                        return newWay;
-                    } else if (Objects.equals(el.getType(), "relation") && el instanceof Relation relation) {
-                        Relation newRelation = getRelation(relation);
-                        return newRelation;
-                    } else {
-                        MapPoint mapPoint = new MapPoint();
-                        mapPoint.setType(el.getType());
-                        mapPoint.setTags(el.getTags());
-                        return mapPoint;
+                    switch (el) {
+                        case Node node when Objects.equals(el.getType(), "node") -> {
+                            return getNode(node);
+                        }
+                        case Way way when Objects.equals(el.getType(), "way") -> {
+                            return getWay(way);
+                        }
+                        case Relation relation when Objects.equals(el.getType(), "relation") -> {
+                            return getRelation(relation);
+                        }
+                        default -> {
+                            MapPoint mapPoint = new MapPoint();
+                            mapPoint.setType(el.getType());
+                            mapPoint.setTags(el.getTags());
+                            return mapPoint;
+                        }
                     }
                 })
                 .toList();
@@ -66,5 +61,22 @@ public class OverpassMapper {
         newRelation.setUid(relation.getUid());
         newRelation.setMembers(relation.getMembers());
         return newRelation;
+    }
+
+    private static @NotNull Node getNode(Node node) {
+        Node newNode = new Node();
+        newNode.setType(node.getType());
+        newNode.setTags(node.getTags());
+        newNode.setLat(node.getLat());
+        newNode.setLon(node.getLon());
+        return newNode;
+    }
+
+    private static @NotNull Way getWay(Way way) {
+        Way newWay = new Way();
+        newWay.setType(way.getType());
+        newWay.setTags(way.getTags());
+        newWay.setGeometry(way.getGeometry());
+        return newWay;
     }
 }
