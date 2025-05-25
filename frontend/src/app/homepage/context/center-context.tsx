@@ -1,7 +1,8 @@
 'use client';
 
-import { OverpassApiResponse } from '@/app/homepage/interface/api-response';
 import { CenterContextProps } from '@/app/homepage/interface/center-interface';
+import { LocateResponse } from '@/app/homepage/types/locate';
+import { Response } from '@/app/services/backend-api/types/response';
 import { createContext, ReactNode, useContext, useState } from 'react';
 
 const CenterContext = createContext<CenterContextProps | undefined>(undefined);
@@ -15,7 +16,7 @@ export const CenterContextProvider = ({
     x: 54.39482637467512,
     y: 18.574318885803226,
   });
-  const [data, setData] = useState<OverpassApiResponse | null>(null);
+  const [data, setData] = useState<Response<LocateResponse> | null>(null);
   const [searchKey, setSearchKey] = useState<number>(0);
 
   return (

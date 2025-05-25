@@ -7,13 +7,8 @@ services:
       - "3000:3000"
     networks:
       - mapzilla-network
-    environment:
-      - AUTH_SECRET=7AQHbzL7cCTcUHpXvT5VHIZdCgJFEZwck24etrrwz60
-      - NEXTAUTH_URL=http://localhost:3000
-      - AUTH_KEYCLOAK_ID=mapzilla-rest-api
-      - AUTH_KEYCLOAK_SECRET=**********
-      - AUTH_KEYCLOAK_ISSUER=http://keycloak:8080/realms/Mapzilla
-
+    env_file:
+      - .env.local
     develop:
       watch:
         - action: sync

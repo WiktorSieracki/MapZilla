@@ -5,11 +5,11 @@ import { MapPoints } from '@/app/homepage/components/map/mappoints';
 import { MultiSelect } from '@/app/homepage/components/multi-select';
 import { PlacesList } from '@/app/homepage/components/placesList/places-list';
 import { Score } from '@/app/homepage/components/placesList/score';
+import { Search } from '@/app/homepage/components/search';
 import { CenterContextProvider } from '@/app/homepage/context/center-context';
 import { Place, places } from '@/app/homepage/interface/place';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { Search } from '@/app/homepage/components/search';
 
 const MapBox = dynamic(
   () =>
@@ -25,7 +25,6 @@ const Home = () => {
       selectedValues.includes(place.readableName)
     );
     setSelectedPlaces(selectedPlaces);
-    console.log(selectedPlaces);
   };
 
   const options = places.map((place) => ({

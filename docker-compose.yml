@@ -1,0 +1,74 @@
+services:
+  database:
+    image: postgres:16-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: mapzilla
+    networks:
+      - mapzilla-network
+    volumes:
+      - mapzilla-volume:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - database
+    networks:
+      - mapzilla-network
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./backend/
+          target: /opt/
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - mapzilla-network
+    env_file:
+      - ./frontend/.env.local
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend/
+          target: /app/
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
+
+  keycloak:
+    build:
+      context: ./keycloak/data
+      dockerfile: Dockerfile.kc
+    restart: always
+    ports:
+      - '8080:8080'
+    networks:
+      - mapzilla-network
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME=localhost
+      - KC_HTTP_PORT=8080
+
+networks:
+  mapzilla-network:
+    name: mapzilla-network
+
+volumes:
+  mapzilla-volume:
+

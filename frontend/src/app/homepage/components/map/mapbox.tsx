@@ -46,8 +46,8 @@ const MapBox = () => {
               You are here. <br />
             </Popup>
           </Marker>
-          {data && <MakePolygons elements={data.elements} />}
-          {data && <MakeNodes elements={data.elements} />}
+          {data && <MakePolygons elements={data.data.places} />}
+          {data && <MakeNodes elements={data.data.places} />}
           <LocationMarker
             center={center}
             setCenter={setCenter}
