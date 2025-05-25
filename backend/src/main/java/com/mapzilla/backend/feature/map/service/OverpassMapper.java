@@ -3,6 +3,7 @@ package com.mapzilla.backend.feature.map.service;
 import com.mapzilla.backend.feature.history.utils.Geometry;
 import com.mapzilla.backend.feature.history.utils.MapPoint;
 import com.mapzilla.backend.feature.history.utils.Node;
+import com.mapzilla.backend.feature.history.utils.Relation;
 import com.mapzilla.backend.feature.history.utils.Way;
 import com.mapzilla.backend.feature.map.dto.OverpassResponse;
 import com.mapzilla.backend.feature.map.enums.PlaceType;
@@ -33,15 +34,23 @@ public class OverpassMapper {
                         newNode.setLat(node.getLat());
                         newNode.setLon(node.getLon());
                         return newNode;
-                    }
-                    if(Objects.equals(el.getType(), "way") && el instanceof Way way) {
+                    } else if(Objects.equals(el.getType(), "way") && el instanceof Way way) {
                         Way newWay = new Way();
                         newWay.setType(way.getType());
                         newWay.setGeometry(way.getGeometry());
                         newWay.setTags(way.getTags());
                         return newWay;
+                    } else if (Objects.equals(el.getType(), "relation") && el instanceof Relation relation) {
+                        Relation newRelation = new Relation();
+                        newRelation.setType(relation.getType());
+                        newRelation.setTags(relation.getTags());
+                        newRelation.setMembers(relation.getMembers());
+                        return newRelation;
                     } else {
-                        return null;
+                        MapPoint mapPoint = new MapPoint();
+                        mapPoint.setType(el.getType());
+                        mapPoint.setTags(el.getTags());
+                        return mapPoint;
                     }
                 })
                 .toList();

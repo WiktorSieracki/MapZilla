@@ -14,11 +14,13 @@ import java.util.Map;
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "type",
-        visible = true
+        visible = true,
+        defaultImpl = MapPoint.class
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Node.class, name = "node"),
-        @JsonSubTypes.Type(value = Way.class, name = "way")
+        @JsonSubTypes.Type(value = Way.class, name = "way"),
+        @JsonSubTypes.Type(value = Relation.class, name = "relation")
 })
 @Getter
 @Setter
