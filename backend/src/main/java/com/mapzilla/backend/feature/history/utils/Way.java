@@ -10,5 +10,5 @@ import java.util.List;
 @Setter
 public class Way extends MapPoint {
     @JsonProperty("geometry")
-    List<Geometry> geometry;
+    private List<Geometry> geometry;
 }
