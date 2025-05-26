@@ -1,7 +1,6 @@
 package com.mapzilla.backend.feature.history.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-//import com.mapzilla.backend.feature.history.utils.Location;
 import com.mapzilla.backend.feature.map.utils.Location;
 import com.mapzilla.backend.feature.label.model.Label;
 import com.mapzilla.backend.feature.user.model.User;
