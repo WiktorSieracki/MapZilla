@@ -52,6 +52,7 @@ public class OverpassMapper {
     private static @NotNull Relation getRelation(Relation relation) {
         Relation newRelation = new Relation();
         newRelation.setType(relation.getType());
+        newRelation.setId(relation.getId());
         newRelation.setTags(relation.getTags());
         newRelation.setId(relation.getId());
         newRelation.setTimestamp(relation.getTimestamp());
@@ -66,6 +67,7 @@ public class OverpassMapper {
     private static @NotNull Node getNode(Node node) {
         Node newNode = new Node();
         newNode.setType(node.getType());
+        newNode.setId(node.getId());
         newNode.setTags(node.getTags());
         newNode.setLat(node.getLat());
         newNode.setLon(node.getLon());
@@ -75,6 +77,7 @@ public class OverpassMapper {
     private static @NotNull Way getWay(Way way) {
         Way newWay = new Way();
         newWay.setType(way.getType());
+        newWay.setId(way.getId());
         newWay.setTags(way.getTags());
         newWay.setGeometry(way.getGeometry());
         return newWay;

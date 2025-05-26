@@ -27,6 +27,8 @@ import java.util.Map;
 public class MapPoint {
     @JsonProperty("type")
     String type;
+    @JsonProperty("id")
+    long id;
     @JsonProperty("tags")
     Map<String,String> tags;
 }
