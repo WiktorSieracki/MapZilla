@@ -1,8 +1,8 @@
 package com.mapzilla.backend.feature.map.service;
 
 import com.mapzilla.backend.feature.history.service.HistoryService;
-import com.mapzilla.backend.feature.history.utils.Location;
-import com.mapzilla.backend.feature.history.utils.MapPoint;
+import com.mapzilla.backend.feature.map.utils.Location;
+import com.mapzilla.backend.feature.map.utils.MapPoint;
 import com.mapzilla.backend.feature.map.dto.MapResponse;
 import com.mapzilla.backend.feature.map.dto.MapResponseDto;
 import com.mapzilla.backend.feature.map.dto.OverpassApiRequest;
@@ -10,11 +10,9 @@ import com.mapzilla.backend.feature.map.enums.PlaceType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

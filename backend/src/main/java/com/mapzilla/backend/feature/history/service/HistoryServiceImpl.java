@@ -2,7 +2,7 @@ package com.mapzilla.backend.feature.history.service;
 
 import com.mapzilla.backend.feature.history.model.History;
 import com.mapzilla.backend.feature.history.repository.HistoryRepository;
-import com.mapzilla.backend.feature.history.utils.Location;
+import com.mapzilla.backend.feature.map.utils.Location;
 import com.mapzilla.backend.feature.user.model.User;
 import com.mapzilla.backend.feature.user.service.UserService;
 import jakarta.transaction.Transactional;

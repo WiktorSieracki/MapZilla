@@ -1,14 +1,10 @@
 package com.mapzilla.backend.feature.map.service;
 
 import com.mapzilla.backend.feature.history.service.HistoryService;
-import com.mapzilla.backend.feature.history.utils.Location;
-import com.mapzilla.backend.feature.history.utils.MapPoint;
+import com.mapzilla.backend.feature.map.utils.MapPoint;
 import com.mapzilla.backend.feature.map.dto.OverpassResponse;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;

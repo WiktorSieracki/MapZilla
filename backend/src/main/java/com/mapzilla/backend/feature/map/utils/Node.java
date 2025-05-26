@@ -1,4 +1,4 @@
-package com.mapzilla.backend.feature.history.utils;
+package com.mapzilla.backend.feature.map.utils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

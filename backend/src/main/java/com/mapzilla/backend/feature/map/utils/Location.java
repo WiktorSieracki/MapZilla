@@ -1,4 +1,4 @@
-package com.mapzilla.backend.feature.history.utils;
+package com.mapzilla.backend.feature.map.utils;
 
 import com.mapzilla.backend.feature.map.dto.MapResponse;
 import com.mapzilla.backend.feature.map.enums.PlaceType;

@@ -1,6 +1,6 @@
 package com.mapzilla.backend.feature.map.dto;
 
-import com.mapzilla.backend.feature.history.utils.MapPoint;
+import com.mapzilla.backend.feature.map.utils.MapPoint;
 import com.mapzilla.backend.feature.map.enums.PlaceType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
