@@ -1,10 +1,14 @@
 package com.mapzilla.backend.feature.history.utils;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
-public class Way {
-    Long id;
-    String type;
-    Geometry geometry;
-    List<Tag> tags;
+@Getter
+@Setter
+public class Way extends MapPoint {
+    @JsonProperty("geometry")
+    List<Geometry> geometry;
 }
