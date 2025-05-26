@@ -1,8 +1,9 @@
 package com.mapzilla.backend.feature.history.service;
 
+import com.mapzilla.backend.feature.history.dto.HistoryResponseDto;
 import com.mapzilla.backend.feature.history.model.History;
 import com.mapzilla.backend.feature.history.repository.HistoryRepository;
-import com.mapzilla.backend.feature.history.utils.Location;
+import com.mapzilla.backend.feature.map.utils.Location;
 import com.mapzilla.backend.feature.user.model.User;
 import com.mapzilla.backend.feature.user.service.UserService;
 import jakarta.transaction.Transactional;
@@ -22,7 +23,6 @@ public class HistoryServiceImpl implements HistoryService {
     @Transactional
     public void addToHistory(Jwt jwt, Location location) {
         User user = userService.getUser(jwt);
-//        History history = user.getHistory();
 
         if (user.getHistory()== null) {
             History history = new History();
@@ -36,12 +36,12 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     @Override
-    public History getUserHistory(Jwt jwt) {
+    public HistoryResponseDto getUserHistory(Jwt jwt) {
         User user = userService.getUser(jwt);
 
         if(user.getHistory() == null) {
             throw new RuntimeException("User history not found");
         }
-        return historyRepository.getHistoryById(user.getHistory().getId());
+        return HistoryResponseDto.from(historyRepository.getHistoryById(user.getHistory().getId()));
     }
 }

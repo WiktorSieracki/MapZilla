@@ -1,17 +1,16 @@
-package com.mapzilla.backend.feature.history.utils;
+package com.mapzilla.backend.feature.map.utils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Getter
 @Setter
 public class Node extends MapPoint {
     @JsonProperty("lat")
-    BigDecimal lat;
+    private BigDecimal lat;
     @JsonProperty("lon")
-    BigDecimal lon;
+    private BigDecimal lon;
 }

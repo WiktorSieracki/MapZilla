@@ -1,5 +1,6 @@
 package com.mapzilla.backend.feature.history.controller;
 
+import com.mapzilla.backend.feature.history.dto.HistoryResponseDto;
 import com.mapzilla.backend.feature.history.model.History;
 import com.mapzilla.backend.feature.history.service.HistoryService;
 import com.mapzilla.backend.feature.util.dto.ApiResponse;
@@ -18,7 +19,7 @@ public class HistoryController {
     private final HistoryService historyService;
 
     @GetMapping
-    public ApiResponse<History> getUserHistory(@AuthenticationPrincipal Jwt jwt) {
+    public ApiResponse<HistoryResponseDto> getUserHistory(@AuthenticationPrincipal Jwt jwt) {
         return new ApiResponse<>(
                 SuccessCode.RESPONSE_SUCCESSFUL,
                 "Successfully fetched user's history",

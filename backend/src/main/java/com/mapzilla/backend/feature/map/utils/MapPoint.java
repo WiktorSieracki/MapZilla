@@ -1,4 +1,4 @@
-package com.mapzilla.backend.feature.history.utils;
+package com.mapzilla.backend.feature.map.utils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
 
 @JsonTypeInfo(
@@ -26,9 +24,9 @@ import java.util.Map;
 @Setter
 public class MapPoint {
     @JsonProperty("type")
-    String type;
+    protected String type;
     @JsonProperty("id")
-    long id;
+    protected long id;
     @JsonProperty("tags")
-    Map<String,String> tags;
+    protected Map<String,String> tags;
 }
