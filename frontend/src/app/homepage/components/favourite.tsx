@@ -1,6 +1,8 @@
+import { usecreateFavouritePlace } from '@/app/favourites/hooks/client/use-create-favourite-place';
 import { useCenterContext } from '@/app/homepage/context/center-context';
 import { Place } from '@/app/homepage/interface/place';
 import { Button } from '@/components/ui/button';
+import { useSession } from 'next-auth/react';
 
 interface FavouriteProps {
   lat: number;
@@ -11,7 +13,11 @@ interface FavouriteProps {
 }
 
 export const Favourite = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
-  const { data, locationCenter } = useCenterContext();
+  const { data, center } = useCenterContext();
+  const { data: session } = useSession();
+  const { mutate: createFavorite, isPending } = usecreateFavouritePlace(
+    session?.tokens?.accessToken as string
+  );
 
   const availablePlaces = selectedPlaces.filter((place) => {
     return data?.data.places.some(
@@ -27,12 +33,17 @@ export const Favourite = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
 
   const postFavourite = async () => {
     const favourite: FavouriteProps = {
-      lat: locationCenter?.x || 0,
-      lon: locationCenter?.y || 0,
+      lat: center?.x || 0,
+      lon: center?.y || 0,
       score: availablePlaces.length / selectedPlaces.length,
-      availablePlaces: availablePlaces.map((place) => place.readableName),
-      notAvailablePlaces: notAvailablePlaces.map((place) => place.readableName),
+      availablePlaces: availablePlaces.map((place) =>
+        place.queryName.toUpperCase()
+      ),
+      notAvailablePlaces: notAvailablePlaces.map((place) =>
+        place.queryName.toUpperCase()
+      ),
     };
+    await createFavorite(favourite);
     console.log('Post favourite', favourite);
   };
 
@@ -40,7 +51,7 @@ export const Favourite = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
     <Button
       className="m-1"
       onClick={postFavourite}>
-      Add location to Favourites
+      {isPending ? 'Adding...' : 'Add to Favourites'}
     </Button>
   );
 };

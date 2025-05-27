@@ -2,49 +2,60 @@
 
 import { FavoriteCard } from '@/app/favourites/components/favorite-card';
 import { LocationComparison } from '@/app/favourites/components/location-comparison';
+import { useFetchFavouritePlaces } from '@/app/favourites/hooks/client/use-fetch-favourite-places';
 import type { FavoritePlace } from '@/app/favourites/types';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 const Favourites = () => {
   const [selectedLocations, setSelectedLocations] = useState<FavoritePlace[]>(
     []
   );
+  const { data: session } = useSession();
+
+  const { data: favouritePlaces } = useFetchFavouritePlaces(
+    session?.tokens?.accessToken as string
+  );
 
   // For now using mock data, later we'll fetch from API
-  const favorites: FavoritePlace[] = [
-    {
-      name: 'Warsaw, Poland',
-      score: 2 / 3,
-      lat: 52.2298,
-      lon: 21.0122,
-      availablePlaces: ['Place of Worship', 'Park', 'Hospital', 'Restaurant'],
-      notAvailablePlaces: ['Cinema', 'Bank'],
-    },
-    {
-      name: 'Rome, Italy',
-      score: 2 / 3,
-      lat: 41.8919,
-      lon: 12.5113,
-      availablePlaces: ['Restaurant', 'Park', 'Place of Worship', 'Bank'],
-      notAvailablePlaces: ['Hospital', 'Cinema'],
-    },
-    {
-      name: 'Paris, France',
-      score: 2 / 3,
-      lat: 48.8566,
-      lon: 2.3522,
-      availablePlaces: ['Cinema', 'Restaurant', 'Hospital', 'Pharmacy'],
-      notAvailablePlaces: ['Park', 'School'],
-    },
-    {
-      name: 'London, UK',
-      score: 2 / 3,
-      lat: 51.5074,
-      lon: -0.1278,
-      availablePlaces: ['School', 'Hospital', 'Park', 'Bank'],
-      notAvailablePlaces: ['Cinema', 'Place of Worship'],
-    },
-  ];
+  // const favorites: FavoritePlace[] = [
+  //   {
+  //     id: '550e8400-e29b-41d4-a716-446655440000',
+  //     score: 0.67,
+  //     lat: 52.2298,
+  //     lon: 21.0122,
+  //     availablePlaces: ['Place of Worship', 'Park', 'Hospital', 'Restaurant'],
+  //     notAvailablePlaces: ['Cinema', 'Bank'],
+  //     labels: ['Warsaw', 'Poland', 'Capital'],
+  //   },
+  //   {
+  //     id: '550e8400-e29b-41d4-a716-446655440001',
+  //     score: 0.67,
+  //     lat: 41.8919,
+  //     lon: 12.5113,
+  //     availablePlaces: ['Restaurant', 'Park', 'Place of Worship', 'Bank'],
+  //     notAvailablePlaces: ['Hospital', 'Cinema'],
+  //     labels: ['Rome', 'Italy', 'Capital'],
+  //   },
+  //   {
+  //     id: '550e8400-e29b-41d4-a716-446655440002',
+  //     score: 0.67,
+  //     lat: 48.8566,
+  //     lon: 2.3522,
+  //     availablePlaces: ['Cinema', 'Restaurant', 'Hospital', 'Pharmacy'],
+  //     notAvailablePlaces: ['Park', 'School'],
+  //     labels: ['Paris', 'France', 'Capital'],
+  //   },
+  //   {
+  //     id: '550e8400-e29b-41d4-a716-446655440003',
+  //     score: 0.67,
+  //     lat: 51.5074,
+  //     lon: -0.1278,
+  //     availablePlaces: ['School', 'Hospital', 'Park', 'Bank'],
+  //     notAvailablePlaces: ['Cinema', 'Place of Worship'],
+  //     labels: ['London', 'UK', 'Capital'],
+  //   },
+  // ];
 
   const handleLocationSelect = (location: FavoritePlace) => {
     setSelectedLocations((prev) => {
@@ -76,11 +87,10 @@ const Favourites = () => {
       )}
 
       <div className="grid gap-4">
-        {favorites.map((place, index) => (
+        {favouritePlaces?.data.map((place) => (
           <FavoriteCard
-            key={index}
+            key={place.id}
             place={place}
-            index={index}
             isSelected={selectedLocations.includes(place)}
             onSelect={() => handleLocationSelect(place)}
           />

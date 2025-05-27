@@ -110,9 +110,6 @@ export const LocationComparison = ({
         </div>
 
         <div>
-          <h3 className="mb-2 font-semibold text-blue-600">
-            Unique to {location1.name}
-          </h3>
           <div className="space-y-2">
             <div>
               <h4 className="text-green-600">Available:</h4>
@@ -142,9 +139,6 @@ export const LocationComparison = ({
         </div>
 
         <div>
-          <h3 className="mb-2 font-semibold text-blue-600">
-            Unique to {location2.name}
-          </h3>
           <div className="space-y-2">
             <div>
               <h4 className="text-green-600">Available:</h4>
