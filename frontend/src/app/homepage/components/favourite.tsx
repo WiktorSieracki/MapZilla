@@ -1,4 +1,4 @@
-import { usecreateFavouritePlace } from '@/app/favourites/hooks/client/use-create-favourite-place';
+import { UseCreateFavouritePlace } from '@/app/favourites/hooks/client/use-create-favourite-place';
 import { useCenterContext } from '@/app/homepage/context/center-context';
 import { Place } from '@/app/homepage/interface/place';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,7 @@ interface FavouriteProps {
 export const Favourite = ({ selectedPlaces }: { selectedPlaces: Place[] }) => {
   const { data, center } = useCenterContext();
   const { data: session } = useSession();
-  const { mutate: createFavorite, isPending } = usecreateFavouritePlace(
+  const { mutate: createFavorite, isPending } = UseCreateFavouritePlace(
     session?.tokens?.accessToken as string
   );
 

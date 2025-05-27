@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { FavouritePlace } from '../favourites/types';
+import { FavouritePlace } from '@/app/favourites/types';
 
 interface HistoryResponse {
   id: string;
