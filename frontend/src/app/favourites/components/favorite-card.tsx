@@ -1,7 +1,7 @@
-import { FavoritePlace } from '@/app/favourites/types';
+import { FavouritePlace } from '@/app/favourites/types';
 
 interface FavoriteCardProps {
-  place: FavoritePlace;
+  place: FavouritePlace;
   isSelected: boolean;
   onSelect: () => void;
 }

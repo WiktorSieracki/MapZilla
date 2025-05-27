@@ -3,12 +3,12 @@
 import { FavoriteCard } from '@/app/favourites/components/favorite-card';
 import { LocationComparison } from '@/app/favourites/components/location-comparison';
 import { useFetchFavouritePlaces } from '@/app/favourites/hooks/client/use-fetch-favourite-places';
-import type { FavoritePlace } from '@/app/favourites/types';
+import type { FavouritePlace } from '@/app/favourites/types';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 const Favourites = () => {
-  const [selectedLocations, setSelectedLocations] = useState<FavoritePlace[]>(
+  const [selectedLocations, setSelectedLocations] = useState<FavouritePlace[]>(
     []
   );
   const { data: session } = useSession();
@@ -17,7 +17,7 @@ const Favourites = () => {
     session?.tokens?.accessToken as string
   );
 
-  const handleLocationSelect = (location: FavoritePlace) => {
+  const handleLocationSelect = (location: FavouritePlace) => {
     setSelectedLocations((prev) => {
       if (prev.includes(location)) {
         return prev.filter((loc) => loc !== location);

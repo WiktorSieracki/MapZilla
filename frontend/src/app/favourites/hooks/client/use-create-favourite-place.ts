@@ -4,7 +4,7 @@ import { Response } from '@/app/services/backend-api/types/response';
 import { getQueryClient } from '@/lib/tanstack-query';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { FavoritePlace } from '../../types';
+import { FavouritePlace } from '../../types';
 import { getFavouriteQueryKey } from '../get-favourites-query-key';
 
 interface FavoritePlacePayload {
@@ -19,7 +19,7 @@ const createFavouritePlace = async (
   accessToken: string,
   favouritePlace: FavoritePlacePayload
 ) => {
-  const { data } = await apiService.post<Response<FavoritePlace>>(
+  const { data } = await apiService.post<Response<FavouritePlace>>(
     `/fav-place`,
     favouritePlace,
     {
@@ -33,7 +33,7 @@ const createFavouritePlace = async (
 
 export const usecreateFavouritePlace = (accessToken: string) =>
   useMutation<
-    Response<FavoritePlace>,
+    Response<FavouritePlace>,
     AxiosError<ErrorResponse>,
     FavoritePlacePayload
   >({

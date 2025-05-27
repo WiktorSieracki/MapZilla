@@ -1,4 +1,4 @@
-export interface FavoritePlace {
+export interface FavouritePlace {
   id: string;
   score: number;
   lat: number;
