@@ -17,46 +17,6 @@ const Favourites = () => {
     session?.tokens?.accessToken as string
   );
 
-  // For now using mock data, later we'll fetch from API
-  // const favorites: FavoritePlace[] = [
-  //   {
-  //     id: '550e8400-e29b-41d4-a716-446655440000',
-  //     score: 0.67,
-  //     lat: 52.2298,
-  //     lon: 21.0122,
-  //     availablePlaces: ['Place of Worship', 'Park', 'Hospital', 'Restaurant'],
-  //     notAvailablePlaces: ['Cinema', 'Bank'],
-  //     labels: ['Warsaw', 'Poland', 'Capital'],
-  //   },
-  //   {
-  //     id: '550e8400-e29b-41d4-a716-446655440001',
-  //     score: 0.67,
-  //     lat: 41.8919,
-  //     lon: 12.5113,
-  //     availablePlaces: ['Restaurant', 'Park', 'Place of Worship', 'Bank'],
-  //     notAvailablePlaces: ['Hospital', 'Cinema'],
-  //     labels: ['Rome', 'Italy', 'Capital'],
-  //   },
-  //   {
-  //     id: '550e8400-e29b-41d4-a716-446655440002',
-  //     score: 0.67,
-  //     lat: 48.8566,
-  //     lon: 2.3522,
-  //     availablePlaces: ['Cinema', 'Restaurant', 'Hospital', 'Pharmacy'],
-  //     notAvailablePlaces: ['Park', 'School'],
-  //     labels: ['Paris', 'France', 'Capital'],
-  //   },
-  //   {
-  //     id: '550e8400-e29b-41d4-a716-446655440003',
-  //     score: 0.67,
-  //     lat: 51.5074,
-  //     lon: -0.1278,
-  //     availablePlaces: ['School', 'Hospital', 'Park', 'Bank'],
-  //     notAvailablePlaces: ['Cinema', 'Place of Worship'],
-  //     labels: ['London', 'UK', 'Capital'],
-  //   },
-  // ];
-
   const handleLocationSelect = (location: FavoritePlace) => {
     setSelectedLocations((prev) => {
       if (prev.includes(location)) {
