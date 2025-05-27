@@ -1,8 +1,8 @@
-import { ComparisonResult, FavoritePlace } from '@/app/favourites/types';
+import { ComparisonResult, FavouritePlace } from '@/app/favourites/types';
 
 interface LocationComparisonProps {
-  location1: FavoritePlace;
-  location2: FavoritePlace;
+  location1: FavouritePlace;
+  location2: FavouritePlace;
 }
 
 const calculateDistance = (
@@ -25,8 +25,8 @@ const calculateDistance = (
 };
 
 const compareLocations = (
-  loc1: FavoritePlace,
-  loc2: FavoritePlace
+  loc1: FavouritePlace,
+  loc2: FavouritePlace
 ): ComparisonResult => {
   const commonAvailable = loc1.availablePlaces.filter((place) =>
     loc2.availablePlaces.includes(place)
@@ -110,9 +110,6 @@ export const LocationComparison = ({
         </div>
 
         <div>
-          <h3 className="mb-2 font-semibold text-blue-600">
-            Unique to {location1.name}
-          </h3>
           <div className="space-y-2">
             <div>
               <h4 className="text-green-600">Available:</h4>
@@ -142,9 +139,6 @@ export const LocationComparison = ({
         </div>
 
         <div>
-          <h3 className="mb-2 font-semibold text-blue-600">
-            Unique to {location2.name}
-          </h3>
           <div className="space-y-2">
             <div>
               <h4 className="text-green-600">Available:</h4>

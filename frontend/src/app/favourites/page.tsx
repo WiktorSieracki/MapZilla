@@ -2,51 +2,22 @@
 
 import { FavoriteCard } from '@/app/favourites/components/favorite-card';
 import { LocationComparison } from '@/app/favourites/components/location-comparison';
-import type { FavoritePlace } from '@/app/favourites/types';
+import { useFetchFavouritePlaces } from '@/app/favourites/hooks/client/use-fetch-favourite-places';
+import type { FavouritePlace } from '@/app/favourites/types';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 const Favourites = () => {
-  const [selectedLocations, setSelectedLocations] = useState<FavoritePlace[]>(
+  const [selectedLocations, setSelectedLocations] = useState<FavouritePlace[]>(
     []
   );
+  const { data: session } = useSession();
 
-  // For now using mock data, later we'll fetch from API
-  const favorites: FavoritePlace[] = [
-    {
-      name: 'Warsaw, Poland',
-      score: 2 / 3,
-      lat: 52.2298,
-      lon: 21.0122,
-      availablePlaces: ['Place of Worship', 'Park', 'Hospital', 'Restaurant'],
-      notAvailablePlaces: ['Cinema', 'Bank'],
-    },
-    {
-      name: 'Rome, Italy',
-      score: 2 / 3,
-      lat: 41.8919,
-      lon: 12.5113,
-      availablePlaces: ['Restaurant', 'Park', 'Place of Worship', 'Bank'],
-      notAvailablePlaces: ['Hospital', 'Cinema'],
-    },
-    {
-      name: 'Paris, France',
-      score: 2 / 3,
-      lat: 48.8566,
-      lon: 2.3522,
-      availablePlaces: ['Cinema', 'Restaurant', 'Hospital', 'Pharmacy'],
-      notAvailablePlaces: ['Park', 'School'],
-    },
-    {
-      name: 'London, UK',
-      score: 2 / 3,
-      lat: 51.5074,
-      lon: -0.1278,
-      availablePlaces: ['School', 'Hospital', 'Park', 'Bank'],
-      notAvailablePlaces: ['Cinema', 'Place of Worship'],
-    },
-  ];
+  const { data: favouritePlaces } = useFetchFavouritePlaces(
+    session?.tokens?.accessToken as string
+  );
 
-  const handleLocationSelect = (location: FavoritePlace) => {
+  const handleLocationSelect = (location: FavouritePlace) => {
     setSelectedLocations((prev) => {
       if (prev.includes(location)) {
         return prev.filter((loc) => loc !== location);
@@ -76,11 +47,10 @@ const Favourites = () => {
       )}
 
       <div className="grid gap-4">
-        {favorites.map((place, index) => (
+        {favouritePlaces?.data.map((place) => (
           <FavoriteCard
-            key={index}
+            key={place.id}
             place={place}
-            index={index}
             isSelected={selectedLocations.includes(place)}
             onSelect={() => handleLocationSelect(place)}
           />

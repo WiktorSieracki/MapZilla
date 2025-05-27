@@ -1,8 +1,7 @@
-import { FavoritePlace } from '@/app/favourites/types';
+import { FavouritePlace } from '@/app/favourites/types';
 
 interface FavoriteCardProps {
-  place: FavoritePlace;
-  index: number;
+  place: FavouritePlace;
   isSelected: boolean;
   onSelect: () => void;
 }
@@ -27,7 +26,10 @@ export const FavoriteCard = ({
       tabIndex={0}>
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h2 className="mb-2 text-xl font-semibold">{place.name}</h2>
+          <h2 className="mb-2 text-xl font-semibold">{place.labels[0]}</h2>
+          <p className="text-sm text-gray-500">
+            {place.labels.slice(1).join(', ')}
+          </p>
           <p className="text-gray-600">
             Coordinates: {place.lat.toFixed(4)}, {place.lon.toFixed(4)}
           </p>
@@ -41,9 +43,9 @@ export const FavoriteCard = ({
         <div>
           <h3 className="mb-2 font-medium text-green-600">Available Places</h3>
           <ul className="list-inside list-disc">
-            {place.availablePlaces.map((item, i) => (
+            {place.availablePlaces.map((item) => (
               <li
-                key={i}
+                key={item}
                 className="text-gray-700">
                 {item}
               </li>
@@ -56,9 +58,9 @@ export const FavoriteCard = ({
             Not Available Places
           </h3>
           <ul className="list-inside list-disc">
-            {place.notAvailablePlaces.map((item, i) => (
+            {place.notAvailablePlaces.map((item) => (
               <li
-                key={i}
+                key={item}
                 className="text-gray-700">
                 {item}
               </li>

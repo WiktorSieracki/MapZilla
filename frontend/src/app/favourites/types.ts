@@ -1,10 +1,11 @@
-export interface FavoritePlace {
-  name: string;
+export interface FavouritePlace {
+  id: string;
   score: number;
   lat: number;
   lon: number;
   availablePlaces: string[];
   notAvailablePlaces: string[];
+  labels: string[];
 }
 
 export interface ComparisonResult {

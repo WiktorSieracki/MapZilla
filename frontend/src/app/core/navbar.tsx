@@ -1,7 +1,7 @@
 import Login from '@/app/core/Login';
 import Logout from '@/app/core/Logout';
-import Link from 'next/link';
 import { auth } from '@/app/services/user-auth';
+import Link from 'next/link';
 
 export const Navbar = async () => {
   const session = await auth();
@@ -15,6 +15,8 @@ export const Navbar = async () => {
       </Link>
       {session ? (
         <div className="flex items-center gap-4 font-semibold">
+          <Link href={'/favourites'}>Favorites</Link>
+          <Link href={'/history'}>History</Link>
           <Link href={'/favourites'}>{session.user?.firstName}</Link>
           <Logout />
         </div>
