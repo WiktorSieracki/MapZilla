@@ -1,9 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { PlusIcon } from '@heroicons/react/24/outline';
-import { Fragment, useState } from 'react';
-import { Label } from '../hooks/client/use-fetch-labels';
-import { useCreateLabel } from '../hooks/client/use-create-label';
 import { useSession } from 'next-auth/react';
+import { Fragment, useState } from 'react';
+import { useCreateLabel } from '@/app/favourites/hooks/client/use-create-label';
+import { Label } from '@/app/favourites/hooks/client/use-fetch-labels';
 
 interface UpdateLabelsModalProps {
   isOpen: boolean;

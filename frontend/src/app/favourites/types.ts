@@ -1,4 +1,4 @@
-import { Label } from './hooks/client/use-fetch-labels';
+import { Label } from '@/app/favourites/hooks/client/use-fetch-labels';
 
 export interface FavouritePlace {
   id: string;

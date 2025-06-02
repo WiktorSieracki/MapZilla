@@ -1,9 +1,9 @@
 import { apiService } from '@/app/services/backend-api/api-service';
 import { Response } from '@/app/services/backend-api/types/response';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { FavouritePlace } from '../../types';
-import { getFavouriteQueryKey } from '../get-favourites-query-key';
-import { Label } from './use-fetch-labels';
+import { FavouritePlace } from '@/app/favourites/types';
+import { getFavouriteQueryKey } from '@/app/favourites/hooks/get-favourites-query-key';
+import { Label } from '@/app/favourites/hooks/client/use-fetch-labels';
 
 interface UpdateFavouritePlaceDto {
   score?: number;

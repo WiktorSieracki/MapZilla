@@ -1,7 +1,7 @@
 import { apiService } from '@/app/services/backend-api/api-service';
 import { Response } from '@/app/services/backend-api/types/response';
 import { useQuery } from '@tanstack/react-query';
-import { getLabelsQueryKey } from '../get-labels-query-key';
+import { getLabelsQueryKey } from '@/app/favourites/hooks/get-labels-query-key';
 
 export interface Label {
   id: string;
