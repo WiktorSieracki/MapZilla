@@ -1,5 +1,6 @@
+import { apiService } from '@/app/services/backend-api/api-service';
+import { Response } from '@/app/services/backend-api/types/response';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import { getLabelsQueryKey } from '../get-labels-query-key';
 
 interface CreateLabelDto {
@@ -13,18 +14,12 @@ interface Label {
   color: string;
 }
 
-interface ApiResponse<T> {
-  code: string;
-  message: string;
-  data: T;
-}
-
 export const useCreateLabel = (token: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (data: CreateLabelDto) => {
-      const response = await axios.post<ApiResponse<Label>>('/labels', data, {
+      const response = await apiService.post<Response<Label>>('/labels', data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

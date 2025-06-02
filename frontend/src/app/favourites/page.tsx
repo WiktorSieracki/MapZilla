@@ -8,6 +8,7 @@ import type { FavouritePlace } from '@/app/favourites/types';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { Label, useFetchLabels } from './hooks/client/use-fetch-labels';
+import { useUpdateFavouritePlace } from './hooks/client/use-update-favourite-place';
 
 const Favourites = () => {
   const [selectedLocations, setSelectedLocations] = useState<FavouritePlace[]>(
@@ -42,15 +43,31 @@ const Favourites = () => {
     setIsUpdateModalOpen(true);
   };
 
+  const { mutate: updateFavouritePlace } = useUpdateFavouritePlace(
+    session?.tokens?.accessToken as string
+  );
+
   const handleUpdateLabels = async (selectedLabels: Label[]) => {
     if (!selectedPlaceId) return;
 
-    // TODO: Implement API call to update labels
-    console.log('Updating labels for place:', selectedPlaceId, selectedLabels);
+    const place = favouritePlaces?.data.find((p) => p.id === selectedPlaceId);
+    if (!place) return;
 
-    refetchPlaces();
-    refetchLabels();
-    setIsUpdateModalOpen(false);
+    updateFavouritePlace(
+      {
+        placeId: selectedPlaceId,
+        data: {
+          availablePlaces: place.availablePlaces,
+          notAvailablePlaces: place.notAvailablePlaces,
+          labels: selectedLabels.map((label) => label.id),
+        },
+      },
+      {
+        onSuccess: () => {
+          setIsUpdateModalOpen(false);
+        },
+      }
+    );
   };
 
   return (
@@ -72,9 +89,8 @@ const Favourites = () => {
 
       <div className="grid gap-4">
         {favouritePlaces?.data.map((place) => (
-          <>
+          <div key={place.id}>
             <FavoriteCard
-              key={place.id}
               place={place}
               isSelected={selectedLocations.includes(place)}
               onSelect={() => handleLocationSelect(place)}
@@ -87,7 +103,7 @@ const Favourites = () => {
               availableLabels={labels?.data || []}
               currentLabels={place.labels}
             />
-          </>
+          </div>
         ))}
       </div>
     </div>

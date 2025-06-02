@@ -26,9 +26,19 @@ export const FavoriteCard = ({
       tabIndex={0}>
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <p className="text-sm text-gray-500">
-            {place.labels.slice(1).join(', ')}
-          </p>
+          <div className="mb-2 flex flex-wrap gap-2">
+            {place.labels.map((label) => (
+              <span
+                key={label.id}
+                className="inline-flex items-center rounded-full bg-neutral-600 px-2.5 py-0.5 text-xl font-medium"
+                style={{
+                  backgroundColor: label.color.toLowerCase() + '20',
+                  color: label.color.toLowerCase(),
+                }}>
+                {label.name}
+              </span>
+            ))}
+          </div>
           <p className="text-gray-600">
             Coordinates: {place.lat.toFixed(4)}, {place.lon.toFixed(4)}
           </p>

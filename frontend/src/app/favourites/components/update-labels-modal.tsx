@@ -2,6 +2,8 @@ import { Dialog, Transition } from '@headlessui/react';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { Fragment, useState } from 'react';
 import { Label } from '../hooks/client/use-fetch-labels';
+import { useCreateLabel } from '../hooks/client/use-create-label';
+import { useSession } from 'next-auth/react';
 
 interface UpdateLabelsModalProps {
   isOpen: boolean;
@@ -18,13 +20,18 @@ export const UpdateLabelsModal = ({
   availableLabels,
   currentLabels,
 }: UpdateLabelsModalProps) => {
+  const { data: session } = useSession();
   const [selectedLabels, setSelectedLabels] = useState<Label[]>(currentLabels);
   const [newLabel, setNewLabel] = useState<Label>({
     name: '',
-    id: `temp-${Date.now()}`,
+    id: '',
     color: 'BLUE',
   });
   const [isAddingNew, setIsAddingNew] = useState(false);
+
+  const { mutate: createLabel } = useCreateLabel(
+    session?.tokens?.accessToken as string
+  );
 
   const handleSave = () => {
     onSave(selectedLabels);
@@ -32,14 +39,25 @@ export const UpdateLabelsModal = ({
   };
 
   const handleAddNewLabel = () => {
-    if (newLabel) {
-      setSelectedLabels([...selectedLabels, newLabel]);
-      setNewLabel({
-        name: '',
-        id: `temp-${Date.now()}`,
-        color: 'BLUE',
-      });
-      setIsAddingNew(false);
+    if (newLabel?.name) {
+      createLabel(
+        {
+          name: newLabel.name,
+          color: newLabel.color,
+        },
+        {
+          onSuccess: (response) => {
+            const createdLabel = response.data;
+            setSelectedLabels((prev) => [...prev, createdLabel]);
+            setNewLabel({
+              name: '',
+              id: '',
+              color: 'BLUE',
+            });
+            setIsAddingNew(false);
+          },
+        }
+      );
     }
   };
 
