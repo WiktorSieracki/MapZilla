@@ -1,3 +1,5 @@
+import { Label } from './hooks/client/use-fetch-labels';
+
 export interface FavouritePlace {
   id: string;
   score: number;
@@ -5,7 +7,7 @@ export interface FavouritePlace {
   lon: number;
   availablePlaces: string[];
   notAvailablePlaces: string[];
-  labels: string[];
+  labels: Label[];
 }
 
 export interface ComparisonResult {

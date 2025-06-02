@@ -2,10 +2,12 @@
 
 import { FavoriteCard } from '@/app/favourites/components/favorite-card';
 import { LocationComparison } from '@/app/favourites/components/location-comparison';
+import { UpdateLabelsModal } from '@/app/favourites/components/update-labels-modal';
 import { useFetchFavouritePlaces } from '@/app/favourites/hooks/client/use-fetch-favourite-places';
 import type { FavouritePlace } from '@/app/favourites/types';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
+import { Label, useFetchLabels } from './hooks/client/use-fetch-labels';
 
 const Favourites = () => {
   const [selectedLocations, setSelectedLocations] = useState<FavouritePlace[]>(
@@ -13,9 +15,11 @@ const Favourites = () => {
   );
   const { data: session } = useSession();
 
-  const { data: favouritePlaces } = useFetchFavouritePlaces(
-    session?.tokens?.accessToken as string
-  );
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
+
+  const { data: favouritePlaces, refetch: refetchPlaces } =
+    useFetchFavouritePlaces(session?.tokens?.accessToken as string);
 
   const handleLocationSelect = (location: FavouritePlace) => {
     setSelectedLocations((prev) => {
@@ -27,6 +31,26 @@ const Favourites = () => {
       }
       return [...prev, location];
     });
+  };
+
+  const { data: labels, refetch: refetchLabels } = useFetchLabels(
+    session?.tokens?.accessToken as string
+  );
+
+  const handleUpdatePlace = (placeId: string) => {
+    setSelectedPlaceId(placeId);
+    setIsUpdateModalOpen(true);
+  };
+
+  const handleUpdateLabels = async (selectedLabels: Label[]) => {
+    if (!selectedPlaceId) return;
+
+    // TODO: Implement API call to update labels
+    console.log('Updating labels for place:', selectedPlaceId, selectedLabels);
+
+    refetchPlaces();
+    refetchLabels();
+    setIsUpdateModalOpen(false);
   };
 
   return (
@@ -48,12 +72,22 @@ const Favourites = () => {
 
       <div className="grid gap-4">
         {favouritePlaces?.data.map((place) => (
-          <FavoriteCard
-            key={place.id}
-            place={place}
-            isSelected={selectedLocations.includes(place)}
-            onSelect={() => handleLocationSelect(place)}
-          />
+          <>
+            <FavoriteCard
+              key={place.id}
+              place={place}
+              isSelected={selectedLocations.includes(place)}
+              onSelect={() => handleLocationSelect(place)}
+              onUpdate={() => handleUpdatePlace(place.id)}
+            />
+            <UpdateLabelsModal
+              isOpen={isUpdateModalOpen}
+              onClose={() => setIsUpdateModalOpen(false)}
+              onSave={handleUpdateLabels}
+              availableLabels={labels?.data || []}
+              currentLabels={place.labels}
+            />
+          </>
         ))}
       </div>
     </div>
