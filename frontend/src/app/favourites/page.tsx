@@ -1,6 +1,7 @@
 'use client';
 
 import { FavoriteCard } from '@/app/favourites/components/favorite-card';
+import { FilterLabels } from '@/app/favourites/components/filter-labels';
 import { LocationComparison } from '@/app/favourites/components/location-comparison';
 import { UpdateLabelsModal } from '@/app/favourites/components/update-labels-modal';
 import { useFetchFavouritePlaces } from '@/app/favourites/hooks/client/use-fetch-favourite-places';
@@ -12,7 +13,6 @@ import { useUpdateFavouritePlace } from '@/app/favourites/hooks/client/use-updat
 import type { FavouritePlace } from '@/app/favourites/types';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
-import { FilterLabels } from './components/filter-labels';
 
 const Favourites = () => {
   const [selectedLocations, setSelectedLocations] = useState<FavouritePlace[]>(
@@ -39,7 +39,7 @@ const Favourites = () => {
     });
   };
 
-  const { data: labels, refetch: refetchLabels } = useFetchLabels(
+  const { data: labels } = useFetchLabels(
     session?.tokens?.accessToken as string
   );
 
