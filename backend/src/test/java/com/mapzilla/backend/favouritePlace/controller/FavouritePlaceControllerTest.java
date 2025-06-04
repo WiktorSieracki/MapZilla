@@ -2,6 +2,7 @@ package com.mapzilla.backend.favouritePlace.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mapzilla.backend.exceptions.ResourceNotFoundException;
+import com.mapzilla.backend.favouritePlace.mockData.FavouritePlaceMockData;
 import com.mapzilla.backend.feature.favouritePlace.controller.FavouritePlaceController;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceCreateDto;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceResponseDto;
@@ -24,7 +25,6 @@ import static org.mockito.ArgumentMatchers.eq;
 
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 

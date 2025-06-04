@@ -1,4 +1,4 @@
-package com.mapzilla.backend.favouritePlace.controller;
+package com.mapzilla.backend.favouritePlace.mockData;
 
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceCreateDto;
 import com.mapzilla.backend.feature.favouritePlace.dto.FavouritePlaceResponseDto;
