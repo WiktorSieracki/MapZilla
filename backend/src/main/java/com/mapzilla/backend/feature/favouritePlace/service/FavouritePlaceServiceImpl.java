@@ -48,12 +48,10 @@ public class FavouritePlaceServiceImpl implements FavouritePlaceService {
 
         return FavouritePlaceResponseDto.from(favPlace);
     }
-
     @Override
     public List<FavouritePlaceResponseDto> getAllFavouritePlaces(Jwt jwt) {
         return favouritePlaceRepository.findAll().stream().map(FavouritePlaceResponseDto::from).toList();
     }
-
     @Override
     public FavouritePlaceResponseDto getFavouritePlaceById(Jwt jwt, UUID id) {
         User user = userService.getUser(jwt);
