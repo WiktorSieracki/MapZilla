@@ -1,5 +1,6 @@
 package com.mapzilla.backend.feature.label.service;
 
+import com.mapzilla.backend.exceptions.ResourceNotFoundException;
 import com.mapzilla.backend.feature.label.dto.LabelCreateDto;
 import com.mapzilla.backend.feature.label.dto.LabelResponseDto;
 import com.mapzilla.backend.feature.label.dto.LabelUpdateDto;
@@ -62,6 +63,10 @@ public class LabelServiceImpl implements LabelService {
     @Override
     @Transactional
     public void deleteLabel(UUID id) {
+        if (!labelRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Label not found with id: " + id);
+        }
+
         labelRepository.deleteById(id);
     }
 
