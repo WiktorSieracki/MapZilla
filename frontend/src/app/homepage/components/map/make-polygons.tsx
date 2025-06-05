@@ -23,7 +23,6 @@ export const MakePolygons = ({ elements }: ElementProps) => {
   if (matchedWays.length === 0) {
     return null;
   }
-  console.log('Matched Ways:', matchedWays);
 
   return (
     <>
