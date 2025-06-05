@@ -1,5 +1,5 @@
-//package com.mapzilla.backend.map.controller;
-//
+package com.mapzilla.backend.map.controller;
+
 //import com.mapzilla.backend.feature.map.controller.MapController;
 //import com.mapzilla.backend.feature.map.service.OverpassApiClient;
 //import org.junit.jupiter.api.BeforeEach;

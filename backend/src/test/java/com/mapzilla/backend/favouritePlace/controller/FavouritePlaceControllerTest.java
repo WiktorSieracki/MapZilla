@@ -144,7 +144,7 @@ class FavouritePlaceControllerTest {
     //===================GetFavouritePlacesForUser==================
 
     @Test
-    void GetAllFavouritePlaces_ReturnSuccess_WithResults() throws Exception {
+    void getAllFavouritePlaces_ReturnSuccess_WithResults() throws Exception {
         Jwt jwt = Jwt.withTokenValue("fake-token")
                 .header("alg", "none")
                 .claim("sub", "user123")
@@ -170,7 +170,7 @@ class FavouritePlaceControllerTest {
     }
 
     @Test
-    void GetAllFavouritePlaces_ReturnSuccess_Empty() throws Exception {
+    void getAllFavouritePlaces_ReturnSuccess_Empty() throws Exception {
         Jwt jwt = Jwt.withTokenValue("fake-token")
                 .header("alg", "none")
                 .claim("sub", "user123")
@@ -193,7 +193,7 @@ class FavouritePlaceControllerTest {
     //========================DeleteFavouritePlace=================
 
     @Test
-    public void DeleteFavouritePlaceById_ReturnSuccess() throws Exception {
+    public void deleteFavouritePlaceById_ReturnSuccess() throws Exception {
         UUID placeId = UUID.randomUUID();
         doNothing().when(favouritePlaceService).deleteFavouriteLocationById(any(Jwt.class), eq(placeId));
 
@@ -204,7 +204,7 @@ class FavouritePlaceControllerTest {
     }
 
     @Test
-    public void DeleteFavouritePlaceById_ReturnNotFound() throws Exception {
+    public void deleteFavouritePlaceById_ReturnNotFound() throws Exception {
         UUID placeId = UUID.randomUUID();
         doThrow(new ResourceNotFoundException("Favourite place not found"))
                 .when(favouritePlaceService).deleteFavouriteLocationById(any(Jwt.class), eq(placeId));
@@ -220,7 +220,7 @@ class FavouritePlaceControllerTest {
 
 
     @Test
-    public void GetFavouritePlaceById_ReturnSuccess() throws Exception {
+    public void getFavouritePlaceById_ReturnSuccess() throws Exception {
         UUID placeId = UUID.randomUUID();
 
         FavouritePlaceResponseDto responseDto = new FavouritePlaceResponseDto();
@@ -243,7 +243,7 @@ class FavouritePlaceControllerTest {
     }
 
     @Test
-    public void GetFavouritePlaceById_ReturnNotFound() throws Exception {
+    public void getFavouritePlaceById_ReturnNotFound() throws Exception {
         UUID placeId = UUID.randomUUID();
 
         when(favouritePlaceService.getFavouritePlaceById(any(Jwt.class), eq(placeId)))
