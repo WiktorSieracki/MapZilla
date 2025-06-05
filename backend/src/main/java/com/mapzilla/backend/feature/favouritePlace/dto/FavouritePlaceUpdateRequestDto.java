@@ -16,10 +16,7 @@ public class FavouritePlaceUpdateRequestDto {
     BigDecimal score;
     BigDecimal lat;
     BigDecimal lon;
-    @NotNull
     Set<PlaceType> availablePlaces;
-    @NotNull
     Set<PlaceType> notAvailablePlaces;
-    @NotNull
     Optional<Set<UUID>> labels;
 }

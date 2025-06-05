@@ -24,7 +24,6 @@ public class FavouritePlaceController {
 
     @PostMapping
     public ApiResponse<FavouritePlaceResponseDto> addFavouritePlace(@AuthenticationPrincipal Jwt jwt, @RequestBody @Valid FavouritePlaceCreateDto favouritePlaceCreateDto){
-
         return new ApiResponse<>(
                 SuccessCode.RESOURCE_CREATED,
                 "Successfully added place to list of favourites",

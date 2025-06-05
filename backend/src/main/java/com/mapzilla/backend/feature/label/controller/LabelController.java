@@ -6,6 +6,7 @@ import com.mapzilla.backend.feature.label.dto.LabelUpdateDto;
 import com.mapzilla.backend.feature.label.service.LabelService;
 import com.mapzilla.backend.feature.util.dto.ApiResponse;
 import com.mapzilla.backend.feature.util.enums.SuccessCode;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +44,7 @@ public class LabelController {
     }
 
     @PostMapping
-    public ApiResponse<LabelResponseDto> createLabel(@RequestBody LabelCreateDto labelCreateDto) {
+    public ApiResponse<LabelResponseDto> createLabel(@RequestBody @Valid LabelCreateDto labelCreateDto) {
         return new ApiResponse<>(
                 SuccessCode.RESOURCE_CREATED,
                 "Successfully created label",
@@ -52,7 +53,7 @@ public class LabelController {
     }
 
     @PatchMapping("/{id}")
-    public ApiResponse<LabelResponseDto> updateLabel(@PathVariable UUID id, @RequestBody LabelUpdateDto labelUpdateDto) {
+    public ApiResponse<LabelResponseDto> updateLabel(@PathVariable UUID id, @RequestBody @Valid LabelUpdateDto labelUpdateDto) {
         return new ApiResponse<>(
                 SuccessCode.RESOURCE_UPDATED,
                 "Successfully updated label with id " + id,

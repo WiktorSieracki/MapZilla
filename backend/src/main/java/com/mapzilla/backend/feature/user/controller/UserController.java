@@ -19,7 +19,6 @@ public class UserController {
 
     private final UserService userService;
 
-
     @GetMapping
     public ApiResponse<List<UserResponseDto>> getAllUsersExceptSelf(Authentication authentication) {
         return new ApiResponse<>(
@@ -27,7 +26,6 @@ public class UserController {
                 "Successfully fetched all users except yourself",
                 userService.finAllUsersExceptSelf(authentication));
     }
-
     @GetMapping("/all")
     public ApiResponse<List<UserResponseDto>> getAllUsers() {
         return new ApiResponse<>(
