@@ -53,7 +53,7 @@ public class LabelController {
     }
 
     @PatchMapping("/{id}")
-    public ApiResponse<LabelResponseDto> updateLabel(@PathVariable UUID id, @RequestBody LabelUpdateDto labelUpdateDto) {
+    public ApiResponse<LabelResponseDto> updateLabel(@PathVariable UUID id, @RequestBody @Valid LabelUpdateDto labelUpdateDto) {
         return new ApiResponse<>(
                 SuccessCode.RESOURCE_UPDATED,
                 "Successfully updated label with id " + id,
