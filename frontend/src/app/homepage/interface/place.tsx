@@ -76,4 +76,11 @@ export const places: Place[] = [
     readableName: 'Cafe',
     color: 'pink',
   },
+  {
+    id: 10,
+    prefix: 'amenity',
+    queryName: 'shop',
+    readableName: 'Shop',
+    color: 'red',
+  },
 ];

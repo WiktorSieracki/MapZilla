@@ -1,4 +1,6 @@
 import { FavouritePlace } from '@/app/favourites/types';
+import { useSession } from 'next-auth/react';
+import { useDeleteFavouritePlace } from '@/app/favourites/hooks/client/use-delete-favourite-place';
 
 interface FavoriteCardProps {
   place: FavouritePlace;
@@ -13,6 +15,17 @@ export const FavoriteCard = ({
   onSelect,
   onUpdate,
 }: FavoriteCardProps) => {
+  const { data: session } = useSession();
+  const { mutate: deletePlace } = useDeleteFavouritePlace(
+    session?.tokens?.accessToken ?? ''
+  );
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (confirm('Are you sure you want to delete this place?')) {
+      deletePlace(place.id);
+    }
+  };
+
   return (
     <div
       className={`rounded-lg p-4 shadow-md transition-colors ${isSelected ? 'border-2 border-blue-500 bg-blue-50' : 'bg-white'}`}
@@ -43,11 +56,18 @@ export const FavoriteCard = ({
             Coordinates: {place.lat.toFixed(4)}, {place.lon.toFixed(4)}
           </p>
         </div>
-        <button
-          onClick={onUpdate}
-          className="ml-4 rounded bg-blue-500 px-3 py-1 text-sm text-white transition-colors hover:bg-blue-600">
-          Update
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={onUpdate}
+            className="rounded bg-blue-500 px-3 py-1 text-sm text-white transition-colors hover:bg-blue-600">
+            Update
+          </button>
+          <button
+            onClick={handleDelete}
+            className="rounded bg-red-500 px-3 py-1 text-sm text-white transition-colors hover:bg-red-600">
+            Delete
+          </button>
+        </div>
         <div className="rounded bg-blue-100 px-3 py-1 font-medium text-blue-800">
           Score: {Math.round(place.score * 100)}%
         </div>
