@@ -11,7 +11,7 @@ services:
     networks:
       - mapzilla-network
     volumes:
-      - mapzilla-volume:/var/lib/postgresql/data
+      - mapzilla2-volume:/var/lib/postgresql/data
 
   backend:
     build:
@@ -35,5 +35,5 @@ networks:
     name: mapzilla-network
 
 volumes:
-  mapzilla-volume:
+  mapzilla2-volume:
 

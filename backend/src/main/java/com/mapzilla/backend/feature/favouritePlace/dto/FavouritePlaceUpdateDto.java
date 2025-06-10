@@ -19,13 +19,13 @@ public class FavouritePlaceUpdateDto {
     Set<PlaceType> notAvailablePlaces;
     Set<Label> labels;
 
-    public static FavouritePlaceUpdateDto from(FavouritePlace favouritePlace, Set<Label> labels) {
+    public static FavouritePlaceUpdateDto from(FavouritePlaceUpdateRequestDto favouritePlaceUpdateRequestDto, Set<Label> labels) {
         return new FavouritePlaceUpdateDto(
-                favouritePlace.getScore(),
-                favouritePlace.getLat(),
-                favouritePlace.getLon(),
-                favouritePlace.getAvailablePlaces(),
-                favouritePlace.getNotAvailablePlaces(),
+                favouritePlaceUpdateRequestDto.getScore(),
+                favouritePlaceUpdateRequestDto.getLat(),
+                favouritePlaceUpdateRequestDto.getLon(),
+                favouritePlaceUpdateRequestDto.getAvailablePlaces(),
+                favouritePlaceUpdateRequestDto.getNotAvailablePlaces(),
                 labels
         );
     }

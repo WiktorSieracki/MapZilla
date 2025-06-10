@@ -51,9 +51,9 @@ public class FavouritePlace {
         this.lon = favouritePlaceUpdateDto.getLon();
         this.availablePlaces = favouritePlaceUpdateDto.getAvailablePlaces();
         this.notAvailablePlaces = favouritePlaceUpdateDto.getNotAvailablePlaces();
-        if(favouritePlaceUpdateDto.getLabels() != null) {
+        if (favouritePlaceUpdateDto.getLabels() != null) {
             this.labels.clear();
-            this.labels = favouritePlaceUpdateDto.getLabels();
+            this.labels.addAll(favouritePlaceUpdateDto.getLabels());
         }
     }
 }
