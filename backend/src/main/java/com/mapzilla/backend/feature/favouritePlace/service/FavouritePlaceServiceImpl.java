@@ -48,16 +48,17 @@ public class FavouritePlaceServiceImpl implements FavouritePlaceService {
 
         return FavouritePlaceResponseDto.from(favPlace);
     }
+
     @Override
     public List<FavouritePlaceResponseDto> getAllFavouritePlaces(Jwt jwt) {
         return favouritePlaceRepository.findAll().stream().map(FavouritePlaceResponseDto::from).toList();
     }
+
     @Override
     public FavouritePlaceResponseDto getFavouritePlaceById(Jwt jwt, UUID id) {
         User user = userService.getUser(jwt);
 
         FavouritePlace favouritePlace = favouritePlaceRepository.findByIdAndUserId(id, user.getId())
-                //TODO - change error handling
                 .orElseThrow(() -> new ResourceNotFoundException("Favourite location not found with id: " + id));
 
         return FavouritePlaceResponseDto.from(favouritePlace);
@@ -83,7 +84,7 @@ public class FavouritePlaceServiceImpl implements FavouritePlaceService {
                 .map(labelService::getLabelsByIdOrThrow)
                 .orElseGet(HashSet::new);
 
-        FavouritePlaceUpdateDto favouritePlaceUpdateDto = FavouritePlaceUpdateDto.from(favouritePlace, newLabels);
+        FavouritePlaceUpdateDto favouritePlaceUpdateDto = FavouritePlaceUpdateDto.from(favouritePlaceUpdateRequestDto, newLabels);
 
         favouritePlace.update(favouritePlaceUpdateDto);
         favouritePlaceRepository.save(favouritePlace);
