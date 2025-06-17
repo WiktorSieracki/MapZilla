@@ -6,8 +6,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface UpdateFavouritePlaceDto {
   score?: number;
-  lat?: number;
-  lon?: number;
+  lat: number;
+  lon: number;
   availablePlaces: string[];
   notAvailablePlaces: string[];
   labels: string[];

@@ -62,6 +62,8 @@ const Favourites = () => {
       {
         placeId: selectedPlaceId,
         data: {
+          lat: place.lat,
+          lon: place.lon,
           availablePlaces: place.availablePlaces,
           notAvailablePlaces: place.notAvailablePlaces,
           labels: selectedLabels.map((label) => label.id),

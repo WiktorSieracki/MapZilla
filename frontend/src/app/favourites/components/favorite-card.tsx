@@ -1,6 +1,6 @@
+import { useDeleteFavouritePlace } from '@/app/favourites/hooks/client/use-delete-favourite-place';
 import { FavouritePlace } from '@/app/favourites/types';
 import { useSession } from 'next-auth/react';
-import { useDeleteFavouritePlace } from '@/app/favourites/hooks/client/use-delete-favourite-place';
 
 interface FavoriteCardProps {
   place: FavouritePlace;
@@ -52,9 +52,11 @@ export const FavoriteCard = ({
               </span>
             ))}
           </div>
-          <p className="text-gray-600">
-            Coordinates: {place.lat.toFixed(4)}, {place.lon.toFixed(4)}
-          </p>
+          {place.lat && place.lon && (
+            <p className="text-gray-600">
+              Coordinates: {place.lat?.toFixed(4)}, {place.lon?.toFixed(4)}
+            </p>
+          )}
         </div>
         <div className="flex gap-2">
           <button
